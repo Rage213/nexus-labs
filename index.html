@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS LABS | Автоматизация цифровой коммерции и парсинга</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Glowing Background Orbs (Tau Kuber / Ferox style) -->
+    <div class="neon-glow-container">
+        <div class="glow-orb glow-orb-center"></div>
+        <div class="glow-orb glow-orb-cyan"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-network-wired"></i></span>
+                <span class="logo-text">NEXUS_LABS</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about" class="nav-link">СТЭК</a></li>
+                    <li><a href="#services" class="nav-link">УСЛУГИ</a></li>
+                    <li><a href="#portfolio" class="nav-link">КЕЙСЫ</a></li>
+                    <li><a href="#contact" class="btn btn-nav">СВЯЗАТЬСЯ</a></li>
+                </ul>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>
+                        NEXUS<br>
+                        <span class="text-gradient">LABS</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Платформа автоматизации цифровых продаж, парсинга цен и управления веб-инфраструктурой. Увеличиваем маржинальность бизнеса через интеграции API, автоматизацию скрапинга и внедрение ИИ.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">ОБСУДИТЬ ЗАДАЧУ <i class="fa-solid fa-chevron-right"></i></a>
+                        <a href="#portfolio" class="btn btn-secondary">НАШИ КЕЙСЫ</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>Selectel</h3>
+                            <p>cloud infrastructure</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>Playwright</h3>
+                            <p>browser automation</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>GPT-4 & LLM</h3>
+                            <p>customer ai support</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mock Dashboard Visual (Tau Kuber style) -->
+                <div class="hero-visual">
+                    <div class="dashboard-mockup">
+                        <!-- Mock Sidebar -->
+                        <div class="dash-sidebar">
+                            <div class="dash-logo-icon"><i class="fa-solid fa-circle-nodes"></i></div>
+                            <div class="dash-menu-item active"><i class="fa-solid fa-chart-simple"></i></div>
+                            <div class="dash-menu-item"><i class="fa-solid fa-server"></i></div>
+                            <div class="dash-menu-item"><i class="fa-solid fa-robot"></i></div>
+                            <div class="dash-menu-item"><i class="fa-solid fa-sliders"></i></div>
+                        </div>
+                        <!-- Mock Workspace -->
+                        <div class="dash-workspace">
+                            <div class="dash-header">
+                                <span class="dash-title">MONITOR // NEXUS_LABS</span>
+                                <div class="dash-status">
+                                    <span class="dash-status-dot"></span> RUNNING
+                                </div>
+                            </div>
+                            <div class="dash-grid">
+                                <div class="dash-widget">
+                                    <div class="dash-widget-label">Обработано операций</div>
+                                    <div class="dash-widget-value text-green"><i class="fa-solid fa-cart-arrow-down"></i> 2,481</div>
+                                </div>
+                                <div class="dash-widget">
+                                    <div class="dash-widget-label">Активных клиентов</div>
+                                    <div class="dash-widget-value text-cyan"><i class="fa-solid fa-users"></i> 14 / 15</div>
+                                </div>
+                            </div>
+                            <!-- Console line container for live feeds -->
+                            <div class="dash-console" id="console-terminal">
+                                <div class="console-line"><span>[23:45:01]</span> System: запуск сессии автоматизации потоков</div>
+                                <div class="console-line"><span>[23:45:12]</span> Parser: отсканировано API маркетплейса, сохранено в CSV</div>
+                                <div class="console-line"><span>[23:45:20]</span> AI Support: дан ответ пользователю @user</div>
+                                <div class="console-line"><span>[23:45:25]</span> Selectel VPS: CPU load - 12%, RAM - 44%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Stack Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">CORE_STABILITY</span>
+                    <h2>Инфраструктура и стек</h2>
+                    <p>Используем передовые инструменты для контроля автоматизации цифровой торговли.</p>
+                </div>
+                <div class="stack-grid">
+                    <div class="stack-category">
+                        <h3><i class="fa-solid fa-cubes"></i> Автоматизация</h3>
+                        <div class="stack-tags">
+                            <span>Request Queues</span>
+                            <span>Task Scheduler</span>
+                            <span>Playwright API</span>
+                            <span>Selenium Automation</span>
+                        </div>
+                    </div>
+                    <div class="stack-category">
+                        <h3><i class="fa-solid fa-server"></i> Серверные решения</h3>
+                        <div class="stack-tags">
+                            <span>Selectel Cloud VPS</span>
+                            <span>SatxCloud Hosting</span>
+                            <span>Railway App Platform</span>
+                            <span>FirstByte RUS</span>
+                        </div>
+                    </div>
+                    <div class="stack-category">
+                        <h3><i class="fa-solid fa-brain"></i> ИИ API и Модели</h3>
+                        <div class="stack-tags">
+                            <span>GPT-4 & GPT-4o</span>
+                            <span>LLaMA 3 / Mixtral</span>
+                            <span>ProxyAPI Gateway</span>
+                            <span>Telegram Bot API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">CAPABILITIES_LIST</span>
+                    <h2>Возможности автоматизации</h2>
+                    <p>Помогаем выстраивать и масштабировать продажи цифровых товаров, лицензий, подписок и балансов.</p>
+                </div>
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-arrow-down-up-lock"></i></div>
+                        <h3>Автоматизация коммерции</h3>
+                        <p>Настройка автоматической выдачи цифровых лотов, мгновенного обновления информации на витринах маркетплейсов и динамического изменения цен.</p>
+                        <ul class="service-features">
+                            <li><i class="fa-solid fa-chevron-right"></i> Интеграция с API маркетплейсов</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Автовыдача цифровых товаров 24/7</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Парсинг цен конкурентов и репрайсинг</li>
+                        </ul>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <h3>ИИ-Поддержка клиентов</h3>
+                        <p>Интеграция современных языковых моделей (LLM) через API для автоматического ответа на технические и справочные вопросы пользователей.</p>
+                        <ul class="service-features">
+                            <li><i class="fa-solid fa-chevron-right"></i> Инструкции по активации подписок</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Снижение нагрузки на саппорт на 80%</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Авто-решение типовых технических тикетов</li>
+                        </ul>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <h3>Парсинг и Мониторинг</h3>
+                        <p>Скрипты регулярного сбора данных с маркетплейсов для аналитики предложений, объемов продаж и предупреждений о демпинге цен.</p>
+                        <ul class="service-features">
+                            <li><i class="fa-solid fa-chevron-right"></i> Сбор данных с API торговых площадок</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Фильтрация по объему продаж и рейтингу</li>
+                            <li><i class="fa-solid fa-chevron-right"></i> Выгрузка данных в CSV и Telegram</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">LATEST_DEVELOPMENTS</span>
+                    <h2>Реализованные кейсы</h2>
+                    <p>Проекты и софт, разработанные нашей командой для оптимизации бизнес-процессов.</p>
+                </div>
+                <div class="portfolio-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-mockup">
+                                <i class="fa-solid fa-terminal"></i>
+                                <span>deals_parser</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">ПАРСЕР ДАННЫХ</span>
+                            <h3>Анализатор сделок Plati</h3>
+                            <p>Скрипт на Python для сбора цен на ключи и аккаунты, отсекающий ненадежных продавцов по количеству общих продаж.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>requests</span>
+                                <span>Pandas</span>
+                                <span>Multithreading</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-mockup">
+                                <i class="fa-solid fa-message"></i>
+                                <span>ai_support_bot</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">ИИ-ЛОГИКА</span>
+                            <h3>Автоответчик поддержки</h3>
+                            <p>Интеллектуальный чат-бот для Telegram и веб-платформ, отвечающий на вопросы клиентов технического характера с использованием LLM.</p>
+                            <div class="project-tags">
+                                <span>GPT API</span>
+                                <span>ProxyAPI</span>
+                                <span>aiogram</span>
+                                <span>SQLite</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-mockup">
+                                <i class="fa-solid fa-cart-flatbed"></i>
+                                <span>digital_goods_shop</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category">АВТОПРОДАЖИ</span>
+                            <h3>Бот дистрибуции товаров</h3>
+                            <p>Telegram-бот для автоматической торговли цифровыми лицензиями и подписками. Запущен на Selectel, база данных PostgreSQL.</p>
+                            <div class="project-tags">
+                                <span>Selectel VPS</span>
+                                <span>aiogram</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container contact-container">
+                <div class="contact-info-block">
+                    <h2>Обсудить интеграцию</h2>
+                    <p>Заполните форму или напишите в личные сообщения. Разберем ваши процессы продаж и настроим автоматизацию под ключ.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail-item">
+                            <i class="fa-brands fa-telegram"></i>
+                            <div>
+                                <span>Telegram для связи</span>
+                                <a href="https://t.me/knrcharge" target="_blank">@knrcharge</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-location-arrow"></i>
+                            <div>
+                                <span>Локация</span>
+                                <span>Ханты-Мансийск, Россия</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-block">
+                    <form id="project-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">ИМЯ</label>
+                            <input type="text" id="name" name="name" placeholder="Матвей" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-tg">TELEGRAM ЮЗЕРНЕЙМ</label>
+                            <input type="text" id="contact-tg" name="contact_tg" placeholder="@knrcharge" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-type">НАПРАВЛЕНИЕ</label>
+                            <select id="project-type" name="project_type">
+                                <option value="bot">Автоматизация веб-процессов</option>
+                                <option value="ai">ИИ Ассистент / Поддержка</option>
+                                <option value="parser">Парсер / Мониторинг цен</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">ОПИСАНИЕ ЗАДАЧИ</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Опишите, какие процессы хотите автоматизировать в рамках вашей IT-инфраструктуры..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">ОТПРАВИТЬ ЗАЯВКУ</button>
+                    </form>
+                    <div id="form-success" class="form-success-message hidden">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <h3>Заявка отправлена!</h3>
+                        <p>Бот доставил уведомление. Свяжусь в ближайшее время.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <p>&copy; 2026 NEXUS_LABS. Все права защищены.</p>
+            <div class="footer-links">
+                <a href="https://t.me/knrcharge" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
