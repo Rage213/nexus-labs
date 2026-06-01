@@ -160,7 +160,7 @@ const botBubble = document.getElementById('bot-bubble');
 const botTrigger = document.getElementById('bot-trigger');
 
 const botPhrases = [
-    "Купи, сделаем всё заебись! 🤖",
+    "Купи, сделаем всё по красоте! 🤖",
     "Твой бизнес сам себя не автоматизирует! 🚀",
     "Напишем софт, который пашет за тебя 24/7! 💻",
     "Давай обсудим ТЗ, сделаем всё по красоте! 🛠️",
