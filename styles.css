@@ -58,6 +58,10 @@ body {
     border-radius: 50%;
     filter: blur(160px);
     opacity: 0.15;
+    /* GPU layer isolation — prevents orb repaints from affecting cards */
+    will-change: transform;
+    transform: translateZ(0);
+    contain: strict;
 }
 
 .glow-orb-center {
@@ -110,79 +114,35 @@ body {
     animation: bottom-orb-anim 22s infinite linear;
 }
 
+/* Only transform is animated — GPU-only, zero CPU repaint */
 @keyframes center-orb-anim {
-    0% {
-        transform: rotate(0deg) translate(0px, 0px) scale(1);
-        filter: blur(160px) hue-rotate(0deg);
-    }
-    50% {
-        transform: rotate(180deg) translate(60px, -40px) scale(1.15);
-        filter: blur(190px) hue-rotate(180deg);
-    }
-    100% {
-        transform: rotate(360deg) translate(0px, 0px) scale(1);
-        filter: blur(160px) hue-rotate(360deg);
-    }
+    0%   { transform: translateZ(0) rotate(0deg)   translate(0px, 0px)    scale(1); }
+    50%  { transform: translateZ(0) rotate(180deg) translate(60px, -40px) scale(1.15); }
+    100% { transform: translateZ(0) rotate(360deg) translate(0px, 0px)    scale(1); }
 }
 
 @keyframes cyan-orb-anim {
-    0% {
-        transform: rotate(0deg) translate(0px, 0px) scale(1);
-        filter: blur(150px) hue-rotate(0deg);
-    }
-    50% {
-        transform: rotate(-180deg) translate(-40px, 50px) scale(0.9);
-        filter: blur(170px) hue-rotate(180deg);
-    }
-    100% {
-        transform: rotate(-360deg) translate(0px, 0px) scale(1);
-        filter: blur(150px) hue-rotate(360deg);
-    }
+    0%   { transform: translateZ(0) rotate(0deg)    translate(0px, 0px)   scale(1); }
+    50%  { transform: translateZ(0) rotate(-180deg) translate(-40px, 50px) scale(0.9); }
+    100% { transform: translateZ(0) rotate(-360deg) translate(0px, 0px)   scale(1); }
 }
 
 @keyframes mid-left-orb-anim {
-    0% {
-        transform: rotate(0deg) translate(0px, 0px) scale(1);
-        filter: blur(160px) hue-rotate(0deg);
-    }
-    50% {
-        transform: rotate(180deg) translate(-50px, -50px) scale(1.2);
-        filter: blur(180px) hue-rotate(180deg);
-    }
-    100% {
-        transform: rotate(360deg) translate(0px, 0px) scale(1);
-        filter: blur(160px) hue-rotate(360deg);
-    }
+    0%   { transform: translateZ(0) rotate(0deg)   translate(0px, 0px)     scale(1); }
+    50%  { transform: translateZ(0) rotate(180deg) translate(-50px, -50px) scale(1.2); }
+    100% { transform: translateZ(0) rotate(360deg) translate(0px, 0px)     scale(1); }
 }
 
 @keyframes mid-right-orb-anim {
-    0% {
-        transform: rotate(0deg) translate(0px, 0px) scale(1);
-        filter: blur(150px) hue-rotate(0deg);
-    }
-    50% {
-        transform: rotate(-180deg) translate(40px, 40px) scale(0.85);
-        filter: blur(170px) hue-rotate(180deg);
-    }
-    100% {
-        transform: rotate(-360deg) translate(0px, 0px) scale(1);
-        filter: blur(150px) hue-rotate(360deg);
-    }
+    0%   { transform: translateZ(0) rotate(0deg)    translate(0px, 0px)  scale(1); }
+    50%  { transform: translateZ(0) rotate(-180deg) translate(40px, 40px) scale(0.85); }
+    100% { transform: translateZ(0) rotate(-360deg) translate(0px, 0px)  scale(1); }
 }
 
 @keyframes bottom-orb-anim {
-    0% {
-        transform: translateX(-50%) rotate(0deg) translate(0px, 0px) scale(1);
-        filter: blur(160px) hue-rotate(0deg);
-    }
-    50% {
-        transform: translateX(-50%) rotate(180deg) translate(30px, -30px) scale(1.1);
-        filter: blur(190px) hue-rotate(180deg);
-    }
-    100% {
-        transform: translateX(-50%) rotate(360deg) translate(0px, 0px) scale(1);
-        filter: blur(160px) hue-rotate(360deg);
-    }
+    0%   { transform: translateZ(0) translateX(-50%) rotate(0deg)   translate(0px, 0px)    scale(1); }
+    50%  { transform: translateZ(0) translateX(-50%) rotate(180deg) translate(30px, -30px) scale(1.1); }
+    100% { transform: translateZ(0) translateX(-50%) rotate(360deg) translate(0px, 0px)    scale(1); }
 }
 
 .container {
