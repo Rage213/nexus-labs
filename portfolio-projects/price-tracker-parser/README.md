@@ -54,8 +54,8 @@ pip install -r requirements.txt
 ### 3. Настройка переменных окружения:
 Переименуйте `.env.example` в `.env` и впишите данные своего Telegram-бота:
 ```env
-TELEGRAM_BOT_TOKEN=8688287172:AAG2cIEDExwec4bRr7Fs2k0cwyfN0YulfLI
-TELEGRAM_CHAT_ID=1453136053
+TELEGRAM_BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN_HERE
+TELEGRAM_CHAT_ID=YOUR_TELEGRAM_USER_ID_HERE
 CHECK_INTERVAL_SECONDS=1800
 DB_FILE=price_history.json
 ```

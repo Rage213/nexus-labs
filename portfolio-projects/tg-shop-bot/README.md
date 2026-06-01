@@ -65,9 +65,9 @@ pip install -r requirements.txt
 ### 3. Настройка переменных окружения:
 Переименуйте файл `.env.example` в `.env` и введите ваш токен бота и Telegram ID для доступа к админке:
 ```env
-BOT_TOKEN=8688287172:AAG2cIEDExwec4bRr7Fs2k0cwyfN0YulfLI
+BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN_HERE
 DB_PATH=shop_database.db
-ADMIN_ID=1453136053
+ADMIN_ID=YOUR_TELEGRAM_USER_ID_HERE
 ```
 
 ### 4. Запуск:
