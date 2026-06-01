@@ -501,14 +501,14 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem 0;
-    gap: 1.5rem;
+    padding: 1.5rem 0.5rem;
+    gap: 1rem;
 }
 
 .dash-logo-icon {
     color: var(--accent-violet);
     font-size: 1.25rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-shadow: 0 0 10px var(--accent-purple-glow);
 }
 
@@ -516,11 +516,24 @@ header {
     color: var(--text-muted);
     font-size: 1.1rem;
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
 }
 
-.dash-menu-item.active, .dash-menu-item:hover {
+.dash-menu-item.active {
     color: var(--accent-cyan);
+    background: rgba(6, 182, 212, 0.1);
+    box-shadow: inset 0 0 5px rgba(6, 182, 212, 0.1);
+}
+
+.dash-menu-item:hover:not(.active) {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .dash-workspace {
@@ -1105,6 +1118,16 @@ footer {
     height: 18px;
     cursor: pointer;
     z-index: 101;
+    position: relative;
+}
+
+.menu-toggle::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
 }
 
 .menu-toggle .bar {
@@ -1169,265 +1192,41 @@ footer {
     }
 }
 
-/* --- INTERACTIVE CYBER BOT ASSISTANT STYLES --- */
-.bot-trigger-icon {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 55px;
-    height: 55px;
-    background: linear-gradient(135deg, var(--accent-violet) 0%, var(--accent-blue) 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.35rem;
-    color: #ffffff;
-    cursor: pointer;
-    z-index: 9998;
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* --- RESPONSIVE DASHBOARD MOCKUP FOR MOBILE --- */
+@media (max-width: 768px) {
+    .dashboard-mockup {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: auto;
+        min-height: 380px;
+    }
+    .dash-sidebar {
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 0.6rem;
+        justify-content: space-around;
+        gap: 0.5rem;
+    }
+    .dash-logo-icon {
+        display: none;
+    }
+    .dash-menu-item {
+        padding: 10px 18px;
+        width: auto;
+        height: auto;
+    }
+    .dash-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-.bot-trigger-icon:hover {
-    transform: scale(1.1) rotate(15deg);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
-}
-
-.trigger-tooltip {
-    position: absolute;
-    right: 65px;
-    background: rgba(10, 11, 16, 0.95);
-    border: 1px solid var(--border-color);
-    padding: 0.5rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    font-family: var(--font-mono);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-}
-
-.bot-trigger-icon:hover .trigger-tooltip {
-    opacity: 1;
-}
-
-/* Cyber Bot Container */
-.cyber-bot-container {
-    position: fixed;
-    z-index: 9999;
-    pointer-events: none;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 250px;
-}
-
-/* Position States */
-.bot-side-left {
-    left: 0;
-    top: 45%;
-    transform: translateX(-150%) scale(0.8);
-}
-.bot-side-left.active {
-    transform: translateX(10px) scale(1);
-    pointer-events: auto;
-}
-
-.bot-side-right {
-    right: 0;
-    top: 45%;
-    transform: translateX(150%) scale(0.8);
-}
-.bot-side-right.active {
-    transform: translateX(-10px) scale(1);
-    pointer-events: auto;
-}
-
-.bot-side-top {
-    top: 0;
-    left: calc(50% - 125px);
-    transform: translateY(-150%) scale(0.8);
-}
-.bot-side-top.active {
-    transform: translateY(20px) scale(1);
-    pointer-events: auto;
-}
-
-.bot-side-bottom {
-    bottom: 0;
-    left: calc(50% - 125px);
-    transform: translateY(150%) scale(0.8);
-}
-.bot-side-bottom.active {
-    transform: translateY(-20px) scale(1);
-    pointer-events: auto;
-}
-
-/* Speech Bubble */
-.cyber-bot-container .speech-bubble {
-    background: rgba(10, 11, 16, 0.95);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 0.7rem 1.1rem;
-    font-size: 0.82rem;
-    color: var(--text-primary);
-    font-weight: 600;
-    text-align: center;
-    position: relative;
-    margin-bottom: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 10px var(--accent-purple-glow);
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 10;
-    width: 100%;
-    line-height: 1.4;
-}
-
-.cyber-bot-container.active .speech-bubble {
-    opacity: 1;
-    transform: scale(1);
-    transition-delay: 0.4s;
-}
-
-/* Speech bubble pointer */
-.cyber-bot-container .speech-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 6px 6px 0;
-    border-style: solid;
-    border-color: rgba(10, 11, 16, 0.95) transparent;
-    display: block;
-    width: 0;
-}
-
-/* Custom CSS-only Robot visual */
-.cyber-bot-container .robot {
-    width: 80px;
-    height: 90px;
-    position: relative;
-}
-
-.cyber-bot-container .head {
-    width: 60px;
-    height: 45px;
-    background: #0f111a;
-    border: 2px solid var(--accent-violet);
-    border-radius: 10px;
-    position: absolute;
-    top: 15px;
-    left: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
-    z-index: 2;
-    animation: turn-head 3s infinite ease-in-out alternate;
-}
-
-.cyber-bot-container .eyes {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 6px;
-}
-
-.cyber-bot-container .eye {
-    width: 10px;
-    height: 10px;
-    background: var(--accent-cyan);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent-cyan);
-    animation: blink-eyes 4s infinite;
-}
-
-.cyber-bot-container .mouth {
-    width: 20px;
-    height: 3px;
-    background: var(--accent-violet);
-    border-radius: 2px;
-    box-shadow: 0 0 5px var(--accent-violet);
-}
-
-.cyber-bot-container .antenna {
-    width: 2px;
-    height: 15px;
-    background: var(--accent-violet);
-    position: absolute;
-    top: 0px;
-    left: 39px;
-}
-
-.cyber-bot-container .antenna .led {
-    width: 6px;
-    height: 6px;
-    background: var(--accent-cyan);
-    border-radius: 50%;
-    position: absolute;
-    top: -6px;
-    left: -2px;
-    box-shadow: 0 0 8px var(--accent-cyan);
-    animation: blink-led 1s infinite alternate;
-}
-
-.cyber-bot-container .torso {
-    width: 40px;
-    height: 30px;
-    background: #090a0f;
-    border: 2px solid var(--accent-blue);
-    border-radius: 6px;
-    position: absolute;
-    top: 58px;
-    left: 20px;
-    z-index: 1;
-}
-
-.cyber-bot-container .core {
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(135deg, var(--accent-violet), var(--accent-cyan));
-    border-radius: 50%;
-    margin: 8px auto;
-    box-shadow: 0 0 8px var(--accent-violet);
-}
-
-.cyber-bot-container .thruster {
-    width: 14px;
-    height: 10px;
-    background: linear-gradient(to bottom, var(--accent-cyan), transparent);
-    position: absolute;
-    top: 86px;
-    left: 33px;
-    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-    animation: flicker-thruster 0.15s infinite alternate;
-}
-
-/* Animations */
-@keyframes blink-eyes {
-    0%, 96%, 100% { transform: scaleY(1); }
-    98% { transform: scaleY(0); }
-}
-
-@keyframes blink-led {
-    0% { opacity: 0.3; }
-    100% { opacity: 1; }
-}
-
-@keyframes flicker-thruster {
-    0% { height: 8px; opacity: 0.6; }
-    100% { height: 14px; opacity: 1; }
-}
-
-@keyframes turn-head {
-    0% { transform: rotate(-8deg) translateY(0); }
-    50% { transform: rotate(0deg) translateY(-2px); }
-    100% { transform: rotate(8deg) translateY(0); }
+@media (max-width: 480px) {
+    .dash-grid {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-mockup {
+        min-height: 430px;
+    }
 }
 
