@@ -45,11 +45,9 @@ body {
 .neon-glow-container {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     width: 100%;
-    max-width: 1400px;
-    height: 900px;
+    height: 1000px;
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
@@ -58,25 +56,25 @@ body {
 .glow-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(150px);
-    opacity: 0.12;
+    filter: blur(160px);
+    opacity: 0.15;
 }
 
 .glow-orb-center {
     width: 600px;
     height: 600px;
     background: radial-gradient(circle, var(--accent-violet) 0%, var(--accent-blue) 60%, transparent 100%);
-    top: -10%;
-    left: -10%;
-    animation: rotate-glow 30s infinite linear;
+    top: -200px;
+    left: -150px;
+    animation: rotate-glow 35s infinite linear;
 }
 
 .glow-orb-cyan {
     width: 500px;
     height: 500px;
     background: var(--accent-cyan);
-    top: 30%;
-    right: -10%;
+    top: 300px;
+    right: -200px;
     opacity: 0.06;
 }
 
