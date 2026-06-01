@@ -106,7 +106,7 @@ const logTemplates = [
     "Aiogram: запуск Telegram-магазина прошел успешно",
     "FunPay: автоподнятие {value} лотов выполнено",
     "Digiseller: выдано {value} лицензий покупателям",
-    "CryptoBot: получен платеж {value} USDT",
+    "CryptoBot: получен платеж {value}00 руб.",
     "LAVA: статус транзакции #{order} — SUCCESS",
     "Parser: спарсено {value} карточек конкурентов",
     "System: сессия модератора #{session} активна",
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qaDatabase = [
         {
             keys: ['цена', 'стоимость', 'прайс', 'сколько', 'дорого', 'дешево', 'руб', 'доллар', 'бакс'],
-            answer: 'Цены на разработку начинаются от **$90** за простые парсеры и от **$180** за функциональные Telegram-боты. Для точного расчета вы можете запустить интерактивный конструктор, нажав на кнопку **«🤖 Заказать бота»** или **«📊 Написать парсер»** ниже!'
+            answer: 'Цены на разработку начинаются от **1 000 руб.** за простые парсеры и от **2 500 руб.** за функциональные Telegram-боты. Для точного расчета вы можете запустить интерактивный конструктор, нажав на кнопку **«🤖 Заказать бота»** или **«📊 Написать парсер»** ниже!'
         },
         {
             keys: ['срок', 'время', 'быстро', 'когда', 'дней', 'день', 'неделя'],
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (chip.action === 'order-bot' || chip.action === 'order-parser') {
                 startTzFlow(chip.action);
             } else if (chip.action === 'view-prices') {
-                speak('Наши цены:\n- Простые парсеры: от **$90**\n- Скрипты автоматизации: от **$140**\n- Telegram-боты: от **$180**\n- Сложные e-commerce экосистемы под ключ: расчет индивидуально.\n\nКакая разработка вас интересует?', 800, () => {
+                speak('Наши цены:\n- Простые парсеры: от **1 000 руб.**\n- Скрипты автоматизации: от **2 000 руб.**\n- Telegram-боты: от **2 500 руб.**\n- Сложные e-commerce экосистемы под ключ: расчет индивидуально.\n\nКакая разработка вас интересует?', 800, () => {
                     setChips(idleChips);
                 });
             } else if (chip.action === 'ask-question') {
@@ -477,28 +477,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateEstimate() {
-        let baseMin = 90;
-        let baseMax = 125;
+        let baseMin = 1000;
+        let baseMax = 2000;
 
         if (tzData.type === 'Telegram-бот') {
-            baseMin = 180;
-            baseMax = 240;
-            if (tzData.subType.includes('Магазин')) {
-                baseMin += 60;
-                baseMax += 90;
+            baseMin = 2500;
+            baseMax = 4000;
+            if (tzData.subType && tzData.subType.includes('Магазин')) {
+                baseMin += 1500;
+                baseMax += 2500;
             }
         }
 
         // Features add price
         tzData.features.forEach(() => {
-            baseMin += 25;
-            baseMax += 35;
+            baseMin += 800;
+            baseMax += 1200;
         });
 
         // Deadline modifier
-        if (tzData.deadline.includes('Срочно')) {
-            baseMin = Math.round(baseMin * 1.2);
-            baseMax = Math.round(baseMax * 1.2);
+        if (tzData.deadline && tzData.deadline.includes('Срочно')) {
+            baseMin += 1000;
+            baseMax += 1500;
         }
 
         tzData.estimateMin = baseMin;
@@ -512,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
                `▪️ Направление: ${tzData.subType}\n` +
                `▪️ Функции: ${featuresText}\n` +
                `▪️ Срок сдачи: ${tzData.deadline}\n` +
-               `▪️ Примерный бюджет: $${tzData.estimateMin} - $${tzData.estimateMax}`;
+               `▪️ Примерный бюджет: ${tzData.estimateMin} - ${tzData.estimateMax} руб.`;
     }
 
     function showSummary() {
@@ -526,11 +526,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Render structured summary
             const summaryHtml = `
                 <div style="font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; background: rgba(5, 5, 8, 0.9); border: 1px solid var(--border-color); padding: 12px; border-radius: 6px; color: var(--text-primary); margin-bottom: 12px;">
-                    <div style="color: var(--accent-violet); font-weight: 700; margin-bottom: 6px; border-bottom: 1px solid rgba(139,92,246,0.2); padding-bottom: 4px;">📋 ТЗ СФОРМИРОВАНО</div>
-                    <div>• <strong>Тип:</strong> ${tzData.type} (${tzData.subType})</div>
-                    <div>• <strong>Функции:</strong> ${tzData.features.length > 0 ? tzData.features.join(', ') : 'Базовые'}</div>
-                    <div>• <strong>Срок:</strong> ${tzData.deadline}</div>
-                    <div style="margin-top: 6px; border-top: 1px dashed var(--border-color); padding-top: 6px; color: var(--accent-cyan); font-weight: 700;">• Оценка: ~$${tzData.estimateMin} - $${tzData.estimateMax}</div>
+                     <div style="color: var(--accent-violet); font-weight: 700; margin-bottom: 6px; border-bottom: 1px solid rgba(139,92,246,0.2); padding-bottom: 4px;">📋 ТЗ СФОРМИРОВАНО</div>
+                     <div>• <strong>Тип:</strong> ${tzData.type} (${tzData.subType})</div>
+                     <div>• <strong>Функции:</strong> ${tzData.features.length > 0 ? tzData.features.join(', ') : 'Базовые'}</div>
+                     <div>• <strong>Срок:</strong> ${tzData.deadline}</div>
+                     <div style="margin-top: 6px; border-top: 1px dashed var(--border-color); padding-top: 6px; color: var(--accent-cyan); font-weight: 700;">• Оценка: ~${tzData.estimateMin} - ${tzData.estimateMax} руб.</div>
                 </div>
                 <div class="chat-cta-container">
                     <button class="chat-btn chat-btn-primary" id="btn-chat-tg"><i class="fa-brands fa-telegram"></i> ОТПРАВИТЬ РАЗРАБОТЧИКУ</button>
