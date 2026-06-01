@@ -31,66 +31,6 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Form Submission Handler
-const projectForm = document.getElementById('project-form');
-const formSuccess = document.getElementById('form-success');
-
-projectForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const typeSelect = document.getElementById('project-type');
-    const formData = {
-        name: document.getElementById('name').value,
-        tg: document.getElementById('contact-tg').value,
-        type: typeSelect.options[typeSelect.selectedIndex].text,
-        message: document.getElementById('message').value
-    };
-
-    // --- ИНТЕГРАЦИЯ С TELEGRAM БОТОМ ---
-    // Вы можете раскомментировать этот код, чтобы заявки с сайта прилетали вам прямо в Telegram!
-    // Для этого нужно создать бота через @BotFather, получить токен и узнать свой ID (через @userinfobot)
-    
-    const BOT_TOKEN = '8468319846:AAHLIxLs2bVesnAwMb-MxB7hxFJKsiw8ljE';
-    const CHAT_ID = '1453136053';
-    const text = `
-🆕 *Новая заявка с сайта-визитки!*
-👤 *Имя:* ${formData.name}
-✈️ *Telegram:* ${formData.tg}
-📂 *Тип проекта:* ${formData.type}
-📝 *Описание:* ${formData.message}
-    `;
-
-    try {
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: text,
-                parse_mode: 'Markdown'
-            })
-        });
-    } catch (error) {
-        console.error('Ошибка отправки в Telegram:', error);
-    }
-
-    // Имитируем отправку
-    console.log('Данные формы:', formData);
-    
-    // Скрываем форму и показываем сообщение об успехе
-    projectForm.classList.add('hidden');
-    formSuccess.classList.remove('hidden');
-    
-    // Сброс формы через 5 секунд (на случай если пользователь захочет отправить еще раз)
-    setTimeout(() => {
-        projectForm.reset();
-        projectForm.classList.remove('hidden');
-        formSuccess.classList.add('hidden');
-    }, 8000);
-});
-
 // Active Navigation Link on Scroll
 window.addEventListener('scroll', () => {
     let current = '';
@@ -107,23 +47,49 @@ window.addEventListener('scroll', () => {
 
     navItems.forEach(item => {
         item.classList.remove('active');
-        if (item.getAttribute('href').slice(1) === current) {
+        if (item.getAttribute('href') && item.getAttribute('href').slice(1) === current) {
             item.classList.add('active');
         }
     });
 });
 
-// --- СИМУЛЯЦИЯ ЖИВЫХ ЛОГОВ ДАШБОРДА (Tau Kuber Style) ---
+// --- INTERSECTION OBSERVER FOR FADE-IN-UP SCROLL ANIMATIONS ---
+document.addEventListener('DOMContentLoaded', () => {
+    const fadeElements = document.querySelectorAll('.fade-in-up');
+    
+    const observerOptions = {
+        root: null,
+        threshold: 0.1, // Trigger when 10% of the element is visible
+        rootMargin: '0px 0px -50px 0px' // Trigger slightly before it is fully in view
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                observer.unobserve(entry.target); // Stop observing once shown
+            }
+        });
+    }, observerOptions);
+    
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+});
+
+// --- СИМУЛЯЦИЯ ЖИВЫХ ЛОГОВ ДАШБОРДА ---
 const consoleTerminal = document.getElementById('console-terminal');
 const logTemplates = [
-    "System: запущено {value} параллельных потоков",
-    "Parser: получены данные по {value} позициям",
-    "AI Agent: сформирован ответ пользователю {user}",
-    "System: CPU - {cpu}%, RAM - {ram}%",
-    "Automation: сессия #{session} успешно перезапущена",
-    "Processor: проведена успешная транзакция #{order}",
-    "ProxyAPI: задержка LLM-шлюза — {ping} мс",
-    "SatxCloud: резервная копия БД создана успешно"
+    "Aiogram: запуск Telegram-магазина прошел успешно",
+    "FunPay: автоподнятие {value} лотов выполнено",
+    "Digiseller: выдано {value} лицензий покупателям",
+    "CryptoBot: получен платеж {value} USDT",
+    "LAVA: статус транзакции #{order} — SUCCESS",
+    "Parser: спарсено {value} карточек конкурентов",
+    "System: сессия модератора #{session} активна",
+    "Cloudflare: DDoS-защита работает в штатном режиме",
+    "AAIO: выплата #{order} успешно проведена",
+    "System: CPU - {cpu}%, RAM - {ram}%"
 ];
 
 function getRandomInt(min, max) {
@@ -138,13 +104,11 @@ function generateSimulatedLog() {
     const template = logTemplates[Math.floor(Math.random() * logTemplates.length)];
     
     let text = template
-        .replace('{value}', getRandomInt(10, 80))
-        .replace('{user}', '@client_' + getRandomInt(100, 999))
-        .replace('{cpu}', getRandomInt(5, 20))
-        .replace('{ram}', getRandomInt(40, 46))
-        .replace('{session}', getRandomInt(1, 32))
-        .replace('{order}', getRandomInt(23000, 29000))
-        .replace('{ping}', getRandomInt(90, 180));
+        .replace('{value}', getRandomInt(5, 50))
+        .replace('{cpu}', getRandomInt(4, 18))
+        .replace('{ram}', getRandomInt(38, 44))
+        .replace('{session}', getRandomInt(10, 99))
+        .replace('{order}', getRandomInt(12500, 19900));
         
     const newLine = document.createElement('div');
     newLine.className = 'console-line';
@@ -152,21 +116,21 @@ function generateSimulatedLog() {
     
     consoleTerminal.appendChild(newLine);
     
-    // Авто-прокрутка вниз
+    // Auto-scroll to bottom
     consoleTerminal.scrollTop = consoleTerminal.scrollHeight;
     
-    // Удаляем старые строчки, чтобы консоль не переполнялась (держим 4 штуки)
+    // Maintain terminal logs length (keep 4 lines)
     if (consoleTerminal.children.length > 4) {
         consoleTerminal.removeChild(consoleTerminal.children[0]);
     }
 }
 
-// Запуск симулятора каждые 3-5 секунд
+// Start log generator
 if (consoleTerminal) {
-    setInterval(generateSimulatedLog, getRandomInt(2500, 5000));
+    setInterval(generateSimulatedLog, getRandomInt(2500, 4500));
 }
 
-// --- ИНТЕРАКТИВНОЕ ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ДАШБОРДА ---
+// --- INTERACTIVE DASHBOARD TAB SWITCHING ---
 const dashMenuItems = document.querySelectorAll('.dash-menu-item');
 const dashTabContents = document.querySelectorAll('.dash-tab-content');
 
@@ -175,11 +139,11 @@ dashMenuItems.forEach(item => {
         const targetTab = item.getAttribute('data-tab');
         if (!targetTab) return;
         
-        // Установка активного пункта меню
+        // Update active class on menu items
         dashMenuItems.forEach(btn => btn.classList.remove('active'));
         item.classList.add('active');
         
-        // Переключение видимости вкладок
+        // Switch tab contents visibility
         dashTabContents.forEach(tab => {
             if (tab.getAttribute('id') === `tab-${targetTab}`) {
                 tab.classList.remove('hidden');
@@ -189,4 +153,3 @@ dashMenuItems.forEach(item => {
         });
     });
 });
-
