@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qaDatabase = [
         {
             keys: ['цена', 'стоимость', 'прайс', 'сколько', 'дорого', 'дешево', 'руб', 'доллар', 'бакс'],
-            answer: 'Цены на разработку начинаются от **1 000 руб.** за простые парсеры и от **2 500 руб.** за функциональные Telegram-боты. Для точного расчета вы можете запустить интерактивный конструктор, нажав на кнопку **«🤖 Заказать бота»** или **«📊 Написать парсер»** ниже!'
+            answer: 'Цены на разработку начинаются от **1 000 руб.** за простые парсеры и от **1 500 руб.** за функциональные Telegram-боты. Для точного расчета вы можете запустить интерактивный конструктор, нажав на кнопку **«🤖 Заказать бота»** или **«📊 Написать парсер»** ниже!'
         },
         {
             keys: ['срок', 'время', 'быстро', 'когда', 'дней', 'день', 'неделя'],
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (chip.action === 'order-bot' || chip.action === 'order-parser') {
                 startTzFlow(chip.action);
             } else if (chip.action === 'view-prices') {
-                speak('Наши цены:\n- Простые парсеры: от **1 000 руб.**\n- Скрипты автоматизации: от **2 000 руб.**\n- Telegram-боты: от **2 500 руб.**\n- Сложные e-commerce экосистемы под ключ: расчет индивидуально.\n\nКакая разработка вас интересует?', 800, () => {
+                speak('Наши цены:\n- Простые парсеры: от **1 000 руб.**\n- Скрипты автоматизации: от **1 200 руб.**\n- Telegram-боты: от **1 500 руб.**\n- Сложные e-commerce экосистемы под ключ: расчет индивидуально.\n\nКакая разработка вас интересует?', 800, () => {
                     setChips(idleChips);
                 });
             } else if (chip.action === 'ask-question') {
@@ -478,27 +478,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calculateEstimate() {
         let baseMin = 1000;
-        let baseMax = 2000;
+        let baseMax = 1500;
 
         if (tzData.type === 'Telegram-бот') {
-            baseMin = 2500;
-            baseMax = 4000;
+            baseMin = 1500;
+            baseMax = 2500;
             if (tzData.subType && tzData.subType.includes('Магазин')) {
-                baseMin += 1500;
-                baseMax += 2500;
+                baseMin += 500;
+                baseMax += 1000;
             }
         }
 
         // Features add price
         tzData.features.forEach(() => {
-            baseMin += 800;
-            baseMax += 1200;
+            baseMin += 200;
+            baseMax += 400;
         });
 
         // Deadline modifier
         if (tzData.deadline && tzData.deadline.includes('Срочно')) {
-            baseMin += 1000;
-            baseMax += 1500;
+            baseMin += 300;
+            baseMax += 500;
         }
 
         tzData.estimateMin = baseMin;
