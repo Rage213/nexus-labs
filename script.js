@@ -116,14 +116,14 @@ window.addEventListener('scroll', () => {
 // --- СИМУЛЯЦИЯ ЖИВЫХ ЛОГОВ ДАШБОРДА (Tau Kuber Style) ---
 const consoleTerminal = document.getElementById('console-terminal');
 const logTemplates = [
-    "Task Manager: запущено активных потоков - {value} шт.",
-    "API Parser: отсканировано {value} предложений каталога",
-    "AI Support: дан автоматический ответ на тикет {user}",
-    "Selectel VPS: нагрузка CPU - {cpu}%, RAM - {ram}%",
-    "Automation: сессия браузера #{session} успешно перезапущена",
-    "Task Manager: проведена выдача цифрового товара #{order}",
-    "ProxyAPI: пинг шлюза LLM Gateway - {ping}мс",
-    "SatxCloud: резервное копирование бэкапа успешно"
+    "System: запущено {value} параллельных потоков",
+    "Parser: получены данные по {value} позициям",
+    "AI Agent: сформирован ответ пользователю {user}",
+    "Selectel VPS: CPU - {cpu}%, RAM - {ram}%",
+    "Automation: сессия #{session} успешно перезапущена",
+    "Processor: проведена успешная транзакция #{order}",
+    "ProxyAPI: задержка LLM-шлюза — {ping} мс",
+    "SatxCloud: резервная копия БД создана успешно"
 ];
 
 function getRandomInt(min, max) {
