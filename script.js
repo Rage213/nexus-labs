@@ -119,7 +119,7 @@ const logTemplates = [
     "System: запущено {value} параллельных потоков",
     "Parser: получены данные по {value} позициям",
     "AI Agent: сформирован ответ пользователю {user}",
-    "Selectel VPS: CPU - {cpu}%, RAM - {ram}%",
+    "System: CPU - {cpu}%, RAM - {ram}%",
     "Automation: сессия #{session} успешно перезапущена",
     "Processor: проведена успешная транзакция #{order}",
     "ProxyAPI: задержка LLM-шлюза — {ping} мс",
