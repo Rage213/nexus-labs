@@ -618,14 +618,31 @@ header {
     font-size: 0.88rem;
     color: var(--text-primary);
     display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.6rem;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
 }
 
 .service-features li i {
     color: var(--accent-green);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    margin-top: 0.28rem;
+    flex-shrink: 0;
+}
+
+.feature-title {
+    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+}
+
+.feature-desc {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.45;
 }
 
 /* Projects Section */
