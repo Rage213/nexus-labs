@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qaDatabase = [
         {
             keys: ['цена', 'стоимость', 'прайс', 'сколько', 'дорого', 'дешево', 'руб', 'доллар', 'бакс'],
-            answer: 'Цены на разработку начинаются от **$150** за простые парсеры и от **$350** за функциональные Telegram-боты. Для точного расчета вы можете запустить интерактивный конструктор, нажав на кнопку **«🤖 Заказать бота»** или **«📊 Написать парсер»** ниже!'
+            answer: 'Цены на разработку начинаются от **$90** за простые парсеры и от **$180** за функциональные Telegram-боты. Для точного расчета вы можете запустить интерактивный конструктор, нажав на кнопку **«🤖 Заказать бота»** или **«📊 Написать парсер»** ниже!'
         },
         {
             keys: ['срок', 'время', 'быстро', 'когда', 'дней', 'день', 'неделя'],
@@ -293,7 +293,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper functions
     function scrollToBottom() {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 50);
     }
 
     function showTypingIndicator() {
@@ -400,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (chip.action === 'order-bot' || chip.action === 'order-parser') {
                 startTzFlow(chip.action);
             } else if (chip.action === 'view-prices') {
-                speak('Наши цены:\n- Простые парсеры: от **$150**\n- Скрипты автоматизации: от **$200**\n- Telegram-боты: от **$350**\n- Сложные e-commerce экосистемы под ключ: расчет индивидуально.\n\nКакая разработка вас интересует?', 800, () => {
+                speak('Наши цены:\n- Простые парсеры: от **$90**\n- Скрипты автоматизации: от **$140**\n- Telegram-боты: от **$180**\n- Сложные e-commerce экосистемы под ключ: расчет индивидуально.\n\nКакая разработка вас интересует?', 800, () => {
                     setChips(idleChips);
                 });
             } else if (chip.action === 'ask-question') {
@@ -475,28 +477,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateEstimate() {
-        let baseMin = 150;
-        let baseMax = 200;
+        let baseMin = 90;
+        let baseMax = 125;
 
         if (tzData.type === 'Telegram-бот') {
-            baseMin = 350;
-            baseMax = 450;
+            baseMin = 180;
+            baseMax = 240;
             if (tzData.subType.includes('Магазин')) {
-                baseMin += 100;
-                baseMax += 150;
+                baseMin += 60;
+                baseMax += 90;
             }
         }
 
         // Features add price
         tzData.features.forEach(() => {
-            baseMin += 40;
-            baseMax += 60;
+            baseMin += 25;
+            baseMax += 35;
         });
 
         // Deadline modifier
         if (tzData.deadline.includes('Срочно')) {
-            baseMin = Math.round(baseMin * 1.25);
-            baseMax = Math.round(baseMax * 1.25);
+            baseMin = Math.round(baseMin * 1.2);
+            baseMax = Math.round(baseMax * 1.2);
         }
 
         tzData.estimateMin = baseMin;
