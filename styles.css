@@ -635,24 +635,8 @@ header {
     will-change: transform;
 }
 
-.stack-category::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 6px;
-    border: 1px solid rgba(139, 92, 246, 0.45);
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.12);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
 .stack-category:hover {
     transform: translateY(-2px);
-}
-
-.stack-category:hover::before {
-    opacity: 1;
 }
 
 .stack-category h3 {
@@ -717,25 +701,8 @@ header {
     will-change: transform;
 }
 
-/* Glow pre-rendered, only opacity animates — zero repaint */
-.service-card::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 8px;
-    border: 1px solid rgba(139, 92, 246, 0.45);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.18);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
 .service-card:hover {
     transform: translateY(-5px);
-}
-
-.service-card:hover::before {
-    opacity: 1;
 }
 
 .service-icon {
@@ -814,25 +781,8 @@ header {
     will-change: transform;
 }
 
-.project-card::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 8px;
-    border: 1px solid rgba(59, 130, 246, 0.45);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.18);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
 .project-card:hover {
     transform: translateY(-5px);
-}
-
-.project-card:hover::before {
-    opacity: 1;
 }
 
 .project-image {
