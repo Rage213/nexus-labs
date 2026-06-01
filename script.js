@@ -31,27 +31,9 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Active Navigation Link on Scroll
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-link');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') && item.getAttribute('href').slice(1) === current) {
-            item.classList.add('active');
-        }
-    });
-});
+// Cache DOM references for scroll handler (avoid repeated queries)
+const _sections = Array.from(document.querySelectorAll('section'));
+const _navItems = Array.from(document.querySelectorAll('.nav-link'));
 
 // --- INTERSECTION OBSERVER FOR SCROLL ANIMATIONS ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -77,28 +59,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// --- SCROLL EFFECTS (PROGRESS BAR & BLUR HEADER) ---
+// --- SCROLL EFFECTS (PROGRESS BAR, BLUR HEADER, NAV ACTIVE) ---
 const scrollBar = document.getElementById('scroll-bar');
 const headerElement = document.querySelector('header');
 
+// Single optimised scroll handler — passive:true lets browser scroll without waiting for JS
+let _scrollRafPending = false;
 window.addEventListener('scroll', () => {
-    // 1. Scroll Progress Bar
-    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-    if (scrollBar) {
-        scrollBar.style.width = scrolled + '%';
-    }
-    
-    // 2. Shrink and Blur Header on Scroll
-    if (headerElement) {
-        if (winScroll > 30) {
-            headerElement.classList.add('scrolled');
-        } else {
-            headerElement.classList.remove('scrolled');
+    if (_scrollRafPending) return;
+    _scrollRafPending = true;
+    requestAnimationFrame(() => {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+
+        // 1. Scroll Progress Bar
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (scrollBar) {
+            scrollBar.style.width = (height > 0 ? (winScroll / height) * 100 : 0) + '%';
         }
-    }
-});
+
+        // 2. Header blur on scroll
+        if (headerElement) {
+            headerElement.classList.toggle('scrolled', winScroll > 30);
+        }
+
+        // 3. Active nav link
+        let current = '';
+        _sections.forEach(section => {
+            if (winScroll >= section.offsetTop - section.clientHeight / 3) {
+                current = section.getAttribute('id');
+            }
+        });
+        _navItems.forEach(item => {
+            const href = item.getAttribute('href');
+            item.classList.toggle('active', href && href.slice(1) === current);
+        });
+
+        _scrollRafPending = false;
+    });
+}, { passive: true });
 
 // --- СИМУЛЯЦИЯ ЖИВЫХ ЛОГОВ ДАШБОРДА ---
 const consoleTerminal = document.getElementById('console-terminal');
