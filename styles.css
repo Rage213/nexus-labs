@@ -474,6 +474,44 @@ header {
     color: var(--text-muted);
 }
 
+/* Dashboard Server List Styling */
+.dash-server-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    height: calc(100% - 30px);
+    justify-content: center;
+}
+
+.server-item {
+    background: #11131c;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.server-name {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-primary);
+}
+
+.server-status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.status-online { color: var(--accent-green); }
+.status-idle { color: var(--accent-cyan); }
+
 /* Stack Section */
 .stack-grid {
     display: grid;

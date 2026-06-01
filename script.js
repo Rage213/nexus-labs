@@ -166,3 +166,27 @@ if (consoleTerminal) {
     setInterval(generateSimulatedLog, getRandomInt(2500, 5000));
 }
 
+// --- ИНТЕРАКТИВНОЕ ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ДАШБОРДА ---
+const dashMenuItems = document.querySelectorAll('.dash-menu-item');
+const dashTabContents = document.querySelectorAll('.dash-tab-content');
+
+dashMenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const targetTab = item.getAttribute('data-tab');
+        if (!targetTab) return;
+        
+        // Установка активного пункта меню
+        dashMenuItems.forEach(btn => btn.classList.remove('active'));
+        item.classList.add('active');
+        
+        // Переключение видимости вкладок
+        dashTabContents.forEach(tab => {
+            if (tab.getAttribute('id') === `tab-${targetTab}`) {
+                tab.classList.remove('hidden');
+            } else {
+                tab.classList.add('hidden');
+            }
+        });
+    });
+});
+

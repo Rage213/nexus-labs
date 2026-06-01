@@ -61,15 +61,15 @@
                     </div>
                     <div class="hero-stats">
                         <div class="stat-item">
-                            <h3>Selectel</h3>
-                            <p>cloud infrastructure</p>
+                            <h3>GitHub</h3>
+                            <p>cloud repository & pages</p>
                         </div>
                         <div class="stat-item">
                             <h3>Playwright</h3>
                             <p>browser automation</p>
                         </div>
                         <div class="stat-item">
-                            <h3>GPT-4 & LLM</h3>
+                            <h3>Gemini 3.5</h3>
                             <p>customer ai support</p>
                         </div>
                     </div>
@@ -81,35 +81,110 @@
                         <!-- Mock Sidebar -->
                         <div class="dash-sidebar">
                             <div class="dash-logo-icon"><i class="fa-solid fa-circle-nodes"></i></div>
-                            <div class="dash-menu-item active"><i class="fa-solid fa-chart-simple"></i></div>
-                            <div class="dash-menu-item"><i class="fa-solid fa-server"></i></div>
-                            <div class="dash-menu-item"><i class="fa-solid fa-robot"></i></div>
-                            <div class="dash-menu-item"><i class="fa-solid fa-sliders"></i></div>
+                            <div class="dash-menu-item active" data-tab="analytics"><i class="fa-solid fa-chart-simple"></i></div>
+                            <div class="dash-menu-item" data-tab="servers"><i class="fa-solid fa-server"></i></div>
+                            <div class="dash-menu-item" data-tab="ai"><i class="fa-solid fa-robot"></i></div>
+                            <div class="dash-menu-item" data-tab="settings"><i class="fa-solid fa-sliders"></i></div>
                         </div>
                         <!-- Mock Workspace -->
                         <div class="dash-workspace">
-                            <div class="dash-header">
-                                <span class="dash-title">MONITOR // NEXUS_LABS</span>
-                                <div class="dash-status">
-                                    <span class="dash-status-dot"></span> RUNNING
+                            <!-- Tab 1: Analytics (Default) -->
+                            <div class="dash-tab-content" id="tab-analytics">
+                                <div class="dash-header">
+                                    <span class="dash-title">MONITOR // NEXUS_LABS</span>
+                                    <div class="dash-status">
+                                        <span class="dash-status-dot"></span> RUNNING
+                                    </div>
+                                </div>
+                                <div class="dash-grid">
+                                    <div class="dash-widget">
+                                        <div class="dash-widget-label">Обработано операций</div>
+                                        <div class="dash-widget-value text-green"><i class="fa-solid fa-cart-arrow-down"></i> 2,481</div>
+                                    </div>
+                                    <div class="dash-widget">
+                                        <div class="dash-widget-label">Активных клиентов</div>
+                                        <div class="dash-widget-value text-cyan"><i class="fa-solid fa-users"></i> 14 / 15</div>
+                                    </div>
+                                </div>
+                                <!-- Console line container for live feeds -->
+                                <div class="dash-console" id="console-terminal">
+                                    <div class="console-line"><span>[11:50:43]</span> System: запуск сессии автоматизации потоков</div>
+                                    <div class="console-line"><span>[11:50:47]</span> Parser: отсканировано API маркетплейса, сохранено в CSV</div>
+                                    <div class="console-line"><span>[11:51:20]</span> AI Agent: сформирован ответ пользователю @user</div>
+                                    <div class="console-line"><span>[11:51:25]</span> System VPS: CPU - 12%, RAM - 44%</div>
                                 </div>
                             </div>
-                            <div class="dash-grid">
-                                <div class="dash-widget">
-                                    <div class="dash-widget-label">Обработано операций</div>
-                                    <div class="dash-widget-value text-green"><i class="fa-solid fa-cart-arrow-down"></i> 2,481</div>
+
+                            <!-- Tab 2: Servers -->
+                            <div class="dash-tab-content hidden" id="tab-servers">
+                                <div class="dash-header">
+                                    <span class="dash-title">INFRASTRUCTURE // STATUS</span>
+                                    <div class="dash-status">
+                                        <span class="dash-status-dot"></span> SECURE
+                                    </div>
                                 </div>
-                                <div class="dash-widget">
-                                    <div class="dash-widget-label">Активных клиентов</div>
-                                    <div class="dash-widget-value text-cyan"><i class="fa-solid fa-users"></i> 14 / 15</div>
+                                <div class="dash-server-list">
+                                    <div class="server-item">
+                                        <div class="server-name"><i class="fa-brands fa-github"></i> GitHub Pages</div>
+                                        <div class="server-status-badge status-online">ONLINE</div>
+                                    </div>
+                                    <div class="server-item">
+                                        <div class="server-name"><i class="fa-solid fa-gears"></i> GitHub Actions</div>
+                                        <div class="server-status-badge status-idle">IDLE</div>
+                                    </div>
+                                    <div class="server-item">
+                                        <div class="server-name"><i class="fa-solid fa-cloud"></i> Selectel Cloud</div>
+                                        <div class="server-status-badge status-online">ONLINE</div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Console line container for live feeds -->
-                            <div class="dash-console" id="console-terminal">
-                                <div class="console-line"><span>[23:45:01]</span> System: запуск сессии автоматизации потоков</div>
-                                <div class="console-line"><span>[23:45:12]</span> Parser: отсканировано API маркетплейса, сохранено в CSV</div>
-                                <div class="console-line"><span>[23:45:20]</span> AI Support: дан ответ пользователю @user</div>
-                                <div class="console-line"><span>[23:45:25]</span> Selectel VPS: CPU load - 12%, RAM - 44%</div>
+
+                            <!-- Tab 3: AI -->
+                            <div class="dash-tab-content hidden" id="tab-ai">
+                                <div class="dash-header">
+                                    <span class="dash-title">AI ENGINE // GOOGLE</span>
+                                    <div class="dash-status">
+                                        <span class="dash-status-dot"></span> READY
+                                    </div>
+                                </div>
+                                <div class="dash-server-list">
+                                    <div class="server-item">
+                                        <div class="server-name"><i class="fa-solid fa-brain"></i> Gemini 3.5</div>
+                                        <div class="server-status-badge status-online">OPERATIONAL</div>
+                                    </div>
+                                    <div class="server-item">
+                                        <div class="server-name"><i class="fa-solid fa-microchip"></i> Gemini 3.1 Pro</div>
+                                        <div class="server-status-badge status-online">ACTIVE</div>
+                                    </div>
+                                    <div class="server-item">
+                                        <div class="server-name"><i class="fa-solid fa-bolt"></i> Latency (API Gateway)</div>
+                                        <div class="server-status-badge status-idle">140ms</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab 4: Settings -->
+                            <div class="dash-tab-content hidden" id="tab-settings">
+                                <div class="dash-header">
+                                    <span class="dash-title">CONFIGURATION // SETTINGS</span>
+                                    <div class="dash-status">
+                                        <span class="dash-status-dot"></span> LOCKED
+                                    </div>
+                                </div>
+                                <div class="dash-server-list">
+                                    <div class="server-item">
+                                        <div class="server-name">Авто-репрайсинг цен</div>
+                                        <div class="server-status-badge status-online">ENABLED</div>
+                                    </div>
+                                    <div class="server-item">
+                                        <div class="server-name">ИИ-Автоответчик саппорта</div>
+                                        <div class="server-status-badge status-online">ENABLED</div>
+                                    </div>
+                                    <div class="server-item">
+                                        <div class="server-name">Уведомления в Telegram</div>
+                                        <div class="server-status-badge status-online">ACTIVE</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,21 +211,21 @@
                         </div>
                     </div>
                     <div class="stack-category">
-                        <h3><i class="fa-solid fa-server"></i> Серверные решения</h3>
+                        <h3><i class="fa-solid fa-server"></i> Хостинг и CI/CD</h3>
                         <div class="stack-tags">
-                            <span>Selectel Cloud VPS</span>
-                            <span>SatxCloud Hosting</span>
-                            <span>Railway App Platform</span>
-                            <span>FirstByte RUS</span>
+                            <span>GitHub Pages</span>
+                            <span>GitHub Actions</span>
+                            <span>Selectel Cloud</span>
+                            <span>Railway App</span>
                         </div>
                     </div>
                     <div class="stack-category">
                         <h3><i class="fa-solid fa-brain"></i> ИИ API и Модели</h3>
                         <div class="stack-tags">
-                            <span>GPT-4 & GPT-4o</span>
-                            <span>LLaMA 3 / Mixtral</span>
+                            <span>Google Gemini 3.5</span>
+                            <span>Gemini 3.1 Pro</span>
+                            <span>Google AI Studio</span>
                             <span>ProxyAPI Gateway</span>
-                            <span>Telegram Bot API</span>
                         </div>
                     </div>
                 </div>
@@ -243,9 +318,9 @@
                         <div class="project-info">
                             <span class="project-category">ИИ-ЛОГИКА</span>
                             <h3>Автоответчик поддержки</h3>
-                            <p>Интеллектуальный чат-бот для Telegram и веб-платформ, отвечающий на вопросы клиентов технического характера с использованием LLM.</p>
+                            <p>Интеллектуальный чат-бот для Telegram и веб-платформ, отвечающий на вопросы клиентов технического характера с использованием Google Gemini API.</p>
                             <div class="project-tags">
-                                <span>GPT API</span>
+                                <span>Gemini API</span>
                                 <span>ProxyAPI</span>
                                 <span>aiogram</span>
                                 <span>SQLite</span>
