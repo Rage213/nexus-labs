@@ -142,6 +142,7 @@ coverage.xml
 *.png
 !logo.png
 !favicon*.png
+!mockup.png
 *.json
 !finder_config.json
 !vector_index.json
