@@ -152,6 +152,7 @@ dashMenuItems.forEach(item => {
             }
         });
     });
+});
 
 // --- CYBER BOT ASSISTANT INTERACTIVE LOGIC ---
 const cyberBot = document.getElementById('cyber-bot');
