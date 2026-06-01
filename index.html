@@ -468,6 +468,50 @@
         </div>
     </footer>
 
+    <!-- AI Chat Agent Bubble -->
+    <div id="ai-chat-bubble" class="ai-chat-bubble">
+        <div class="ai-bubble-pulse"></div>
+        <i class="fa-solid fa-robot"></i>
+        <span class="ai-bubble-label">ИИ-Ассистент</span>
+    </div>
+
+    <!-- AI Chat Window -->
+    <div id="ai-chat-window" class="ai-chat-window">
+        <!-- Header -->
+        <div class="ai-chat-header">
+            <div class="ai-header-info">
+                <div class="ai-avatar-icon">🤖</div>
+                <div>
+                    <div class="ai-agent-name">NEXUS AI</div>
+                    <div class="ai-agent-status"><span class="status-dot"></span> Online</div>
+                </div>
+            </div>
+            <button id="ai-chat-close" class="ai-close-btn">&times;</button>
+        </div>
+        
+        <!-- Messages Area -->
+        <div class="ai-chat-messages" id="ai-messages">
+            <!-- Starting message -->
+            <div class="ai-message agent">
+                Привет! Я ИИ-ассистент студии **Nexus Labs**. Помогу составить техническое задание (ТЗ) для вашего проекта, рассчитать стоимость разработки или ответить на интересующие вопросы. Чем могу помочь?
+            </div>
+        </div>
+
+        <!-- Suggestion Chips -->
+        <div class="ai-chat-suggestions" id="ai-suggestions">
+            <button class="ai-chip" data-action="order-bot">🤖 Заказать бота</button>
+            <button class="ai-chip" data-action="order-parser">📊 Написать парсер</button>
+            <button class="ai-chip" data-action="view-prices">💰 Узнать цены</button>
+            <button class="ai-chip" data-action="custom-question">❓ Задать свой вопрос</button>
+        </div>
+
+        <!-- Input Footer -->
+        <div class="ai-chat-footer">
+            <input type="text" id="ai-input" placeholder="Введите ваше сообщение..." autocomplete="off">
+            <button id="ai-send-btn" class="ai-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

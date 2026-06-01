@@ -177,3 +177,435 @@ dashMenuItems.forEach(item => {
     });
 });
 
+// --- AI CHAT AGENT & ТЗ BUILDER LOGIC ---
+document.addEventListener('DOMContentLoaded', () => {
+    const chatBubble = document.getElementById('ai-chat-bubble');
+    const chatWindow = document.getElementById('ai-chat-window');
+    const chatClose = document.getElementById('ai-chat-close');
+    const chatMessages = document.getElementById('ai-messages');
+    const chatSuggestions = document.getElementById('ai-suggestions');
+    const chatInput = document.getElementById('ai-input');
+    const chatSendBtn = document.getElementById('ai-send-btn');
+
+    if (!chatBubble || !chatWindow) return;
+
+    // Toggle Chat Window
+    chatBubble.addEventListener('click', () => {
+        chatWindow.classList.toggle('active');
+        if (chatWindow.classList.contains('active')) {
+            chatInput.focus();
+            scrollToBottom();
+        }
+    });
+
+    chatClose.addEventListener('click', () => {
+        chatWindow.classList.remove('active');
+    });
+
+    // Chat States and Data
+    let currentState = 'idle'; // 'idle', 'tz-type-bot', 'tz-type-parser', 'tz-features-bot', 'tz-features-parser', 'tz-deadline', 'tz-summary'
+    let tzData = {
+        type: '',
+        subType: '',
+        features: [],
+        deadline: '',
+        estimateMin: 0,
+        estimateMax: 0
+    };
+
+    // Keyword database for general queries
+    const qaDatabase = [
+        {
+            keys: ['цена', 'стоимость', 'прайс', 'сколько', 'дорого', 'дешево', 'руб', 'доллар', 'бакс'],
+            answer: 'Цены на разработку начинаются от **$150** за простые парсеры и от **$350** за функциональные Telegram-боты. Для точного расчета вы можете запустить интерактивный конструктор, нажав на кнопку **«🤖 Заказать бота»** или **«📊 Написать парсер»** ниже!'
+        },
+        {
+            keys: ['срок', 'время', 'быстро', 'когда', 'дней', 'день', 'неделя'],
+            answer: 'Обычно разработка простого скрипта занимает **2–4 дня**, а полноценного бот-магазина с автовыдачей и админкой — **5–10 дней**. Мы всегда прописываем дедлайны в ТЗ.'
+        },
+        {
+            keys: ['стек', 'язык', 'технологии', 'python', 'питон', 'база', 'бд', 'sql', 'gemini'],
+            answer: 'Наш основной стек — **Python** (фреймворк `Aiogram 3` для Telegram-ботов, библиотеки `Playwright/Selenium` для автоматизации веб-действий). Базы данных — PostgreSQL и SQLite. Интегрируем ИИ-модели Gemini и OpenAI.'
+        },
+        {
+            keys: ['контакт', 'написать', 'связь', 'админ', 'владелец', 'telegram', 'телега', 'тг'],
+            answer: 'Вы можете связаться с основателем студии напрямую в Telegram: **[@knrcharge](https://t.me/knrcharge)**. Отвечаем в течение 15 минут!'
+        },
+        {
+            keys: ['привет', 'здравствуйте', 'ку', 'добрый', 'hello', 'hi'],
+            answer: 'Привет! Я виртуальный ассистент Nexus Labs. Помогу составить техническое задание, узнать стоимость софта или отвечу на ваши вопросы. Попробуйте нажать кнопку-подсказку ниже!'
+        }
+    ];
+
+    // Main chips configs
+    const idleChips = [
+        { label: '🤖 Заказать бота', action: 'order-bot' },
+        { label: '📊 Написать парсер', action: 'order-parser' },
+        { label: '💰 Узнать цены', action: 'view-prices' },
+        { label: '❓ Задать вопрос', action: 'ask-question' }
+    ];
+
+    const botTypeChips = [
+        { label: '🏪 Магазин цифровых товаров', val: 'Магазин автовыдачи' },
+        { label: '📞 Бот техподдержки клиентов', val: 'Бот техподдержки' },
+        { label: '📣 Бот-модератор чатов/каналов', val: 'Бот-модератор' },
+        { label: '⚙️ Индивидуальный заказ', val: 'Индивидуальный бот' },
+        { label: '❌ Отмена', action: 'cancel' }
+    ];
+
+    const parserTypeChips = [
+        { label: '🛍️ Сбор цен маркетплейсов', val: 'Сбор цен и товаров' },
+        { label: '📈 Мониторинг лотов (FunPay/etc)', val: 'Мониторинг лотов' },
+        { label: '👥 Сбор контактов/лидов (парсер)', val: 'Сбор контактов' },
+        { label: '⚙️ Индивидуальный скрипт', val: 'Индивидуальный парсер' },
+        { label: '❌ Отмена', action: 'cancel' }
+    ];
+
+    const botFeatureChips = [
+        { label: '💳 Оплаты (CryptoBot/LAVA)', val: 'Прием платежей' },
+        { label: '📦 Автовыдача товаров', val: 'Автовыдача' },
+        { label: '🗄️ База данных пользователей', val: 'База данных' },
+        { label: '🖥️ Админ-панель / WebApp', val: 'Админ-панель' },
+        { label: '✅ Все выбрал', action: 'features-done' },
+        { label: '❌ Отмена', action: 'cancel' }
+    ];
+
+    const parserFeatureChips = [
+        { label: '🔄 Обход Cloudflare/DDoS', val: 'Обход защит' },
+        { label: '📈 Выгрузка в Excel/Google Sheets', val: 'Экспорт Excel' },
+        { label: '🔔 Уведомления в Telegram', val: 'Уведомления в ТГ' },
+        { label: '⏱️ Работа по таймеру 24/7', val: 'Авто-таймер' },
+        { label: '✅ Все выбрал', action: 'features-done' },
+        { label: '❌ Отмена', action: 'cancel' }
+    ];
+
+    const deadlineChips = [
+        { label: '🔥 Срочно (1-3 дня)', val: 'Срочно (1-3 дня)' },
+        { label: '⏳ Стандартно (до 7 дней)', val: 'Стандартно (до 7 дней)' },
+        { label: '📅 Не к спеху', val: 'Не к спеху' },
+        { label: '❌ Отмена', action: 'cancel' }
+    ];
+
+    const summaryChips = [
+        { label: '🔄 Собрать новое ТЗ', action: 'restart' },
+        { label: '❌ Закрыть чат', action: 'close' }
+    ];
+
+    // Helper functions
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+        const indicator = document.createElement('div');
+        indicator.className = 'ai-message agent typing-indicator';
+        indicator.id = 'typing-indicator';
+        indicator.innerHTML = `
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        `;
+        chatMessages.appendChild(indicator);
+        scrollToBottom();
+    }
+
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+            indicator.remove();
+        }
+    }
+
+    function formatText(text) {
+        // Simple markdown formatter (**text** -> <strong>text</strong>)
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    }
+
+    function appendMessage(sender, text, isHtml = false) {
+        removeTypingIndicator();
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `ai-message ${sender}`;
+        
+        if (isHtml) {
+            messageDiv.innerHTML = text;
+        } else {
+            messageDiv.innerHTML = formatText(text);
+        }
+        
+        chatMessages.appendChild(messageDiv);
+        scrollToBottom();
+    }
+
+    function speak(text, delay = 600, callback = null) {
+        showTypingIndicator();
+        setTimeout(() => {
+            appendMessage('agent', text);
+            if (callback) callback();
+        }, delay);
+    }
+
+    function setChips(chips) {
+        chatSuggestions.innerHTML = '';
+        chips.forEach(c => {
+            const btn = document.createElement('button');
+            btn.className = 'ai-chip';
+            
+            // Check if this chip is currently selected in features state
+            if ((currentState === 'tz-features-bot' || currentState === 'tz-features-parser') && tzData.features.includes(c.val)) {
+                btn.textContent = `✓ ${c.label}`;
+                btn.style.background = 'rgba(6, 182, 212, 0.15)';
+                btn.style.borderColor = 'rgba(6, 182, 212, 0.5)';
+            } else {
+                btn.textContent = c.label;
+            }
+
+            btn.addEventListener('click', () => handleChipAction(c));
+            chatSuggestions.appendChild(btn);
+        });
+    }
+
+    // Logic Handlers
+    function handleChipAction(chip) {
+        // Print user choice
+        if (chip.action !== 'close') {
+            appendMessage('user', chip.label);
+        }
+
+        // Handle cancellations
+        if (chip.action === 'cancel') {
+            resetTz();
+            speak('Составление ТЗ отменено. Чем еще могу помочь?', 500, () => {
+                currentState = 'idle';
+                setChips(idleChips);
+            });
+            return;
+        }
+
+        // Handle restart
+        if (chip.action === 'restart') {
+            resetTz();
+            startTzFlow('order-bot'); // restart as bot
+            return;
+        }
+
+        // Handle close
+        if (chip.action === 'close') {
+            chatWindow.classList.remove('active');
+            return;
+        }
+
+        // Flow State Machine
+        if (currentState === 'idle') {
+            if (chip.action === 'order-bot' || chip.action === 'order-parser') {
+                startTzFlow(chip.action);
+            } else if (chip.action === 'view-prices') {
+                speak('Наши цены:\n- Простые парсеры: от **$150**\n- Скрипты автоматизации: от **$200**\n- Telegram-боты: от **$350**\n- Сложные e-commerce экосистемы под ключ: расчет индивидуально.\n\nКакая разработка вас интересует?', 800, () => {
+                    setChips(idleChips);
+                });
+            } else if (chip.action === 'ask-question') {
+                speak('Спрашивайте! Напишите свой вопрос в чат, и я сразу на него отвечу. Либо нажмите на одну из кнопок заказа выше.', 600, () => {
+                    setChips(idleChips);
+                });
+            }
+        } else if (currentState === 'tz-type-bot') {
+            tzData.subType = chip.val;
+            currentState = 'tz-features-bot';
+            speak('Отлично! Теперь выберите, какие **функции и интеграции** необходимы (выберите несколько и затем нажмите «✅ Все выбрал»):', 600, () => {
+                setChips(botFeatureChips);
+            });
+        } else if (currentState === 'tz-type-parser') {
+            tzData.subType = chip.val;
+            currentState = 'tz-features-parser';
+            speak('Отлично! Какие **возможности** потребуются парсеру? (выберите несколько и затем нажмите «✅ Все выбрал»):', 600, () => {
+                setChips(parserFeatureChips);
+            });
+        } else if (currentState === 'tz-features-bot' || currentState === 'tz-features-parser') {
+            if (chip.action === 'features-done') {
+                currentState = 'tz-deadline';
+                speak('И последнее — укажите желаемые **сроки** сдачи проекта:', 600, () => {
+                    setChips(deadlineChips);
+                });
+            } else {
+                // Toggle feature
+                const idx = tzData.features.indexOf(chip.val);
+                if (idx > -1) {
+                    tzData.features.splice(idx, 1);
+                } else {
+                    tzData.features.push(chip.val);
+                }
+                // Refresh chips to show checkmarks
+                const currentChips = (currentState === 'tz-features-bot') ? botFeatureChips : parserFeatureChips;
+                setChips(currentChips);
+            }
+        } else if (currentState === 'tz-deadline') {
+            tzData.deadline = chip.val;
+            currentState = 'tz-summary';
+            calculateEstimate();
+            showSummary();
+        }
+    }
+
+    function resetTz() {
+        tzData = {
+            type: '',
+            subType: '',
+            features: [],
+            deadline: '',
+            estimateMin: 0,
+            estimateMax: 0
+        };
+    }
+
+    function startTzFlow(type) {
+        resetTz();
+        if (type === 'order-bot') {
+            tzData.type = 'Telegram-бот';
+            currentState = 'tz-type-bot';
+            speak('Давайте соберем ТЗ для вашего **Telegram-бота**. Выберите категорию бота:', 600, () => {
+                setChips(botTypeChips);
+            });
+        } else {
+            tzData.type = 'Веб-парсер';
+            currentState = 'tz-type-parser';
+            speak('Давайте соберем ТЗ для вашего **парсер/скрипта**. Какая основная задача софта?', 600, () => {
+                setChips(parserTypeChips);
+            });
+        }
+    }
+
+    function calculateEstimate() {
+        let baseMin = 150;
+        let baseMax = 200;
+
+        if (tzData.type === 'Telegram-бот') {
+            baseMin = 350;
+            baseMax = 450;
+            if (tzData.subType.includes('Магазин')) {
+                baseMin += 100;
+                baseMax += 150;
+            }
+        }
+
+        // Features add price
+        tzData.features.forEach(() => {
+            baseMin += 40;
+            baseMax += 60;
+        });
+
+        // Deadline modifier
+        if (tzData.deadline.includes('Срочно')) {
+            baseMin = Math.round(baseMin * 1.25);
+            baseMax = Math.round(baseMax * 1.25);
+        }
+
+        tzData.estimateMin = baseMin;
+        tzData.estimateMax = baseMax;
+    }
+
+    function compileMarkdownTz() {
+        const featuresText = tzData.features.length > 0 ? tzData.features.join(', ') : 'Не выбрано';
+        return `📋 ТЕХНИЧЕСКОЕ ЗАДАНИЕ // NEXUS LABS\n` +
+               `▪️ Тип проекта: ${tzData.type}\n` +
+               `▪️ Направление: ${tzData.subType}\n` +
+               `▪️ Функции: ${featuresText}\n` +
+               `▪️ Срок сдачи: ${tzData.deadline}\n` +
+               `▪️ Примерный бюджет: $${tzData.estimateMin} - $${tzData.estimateMax}`;
+    }
+
+    function showSummary() {
+        const md = compileMarkdownTz();
+        
+        // Print summarizing message
+        showTypingIndicator();
+        setTimeout(() => {
+            removeTypingIndicator();
+            
+            // Render structured summary
+            const summaryHtml = `
+                <div style="font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; background: rgba(5, 5, 8, 0.9); border: 1px solid var(--border-color); padding: 12px; border-radius: 6px; color: var(--text-primary); margin-bottom: 12px;">
+                    <div style="color: var(--accent-violet); font-weight: 700; margin-bottom: 6px; border-bottom: 1px solid rgba(139,92,246,0.2); padding-bottom: 4px;">📋 ТЗ СФОРМИРОВАНО</div>
+                    <div>• <strong>Тип:</strong> ${tzData.type} (${tzData.subType})</div>
+                    <div>• <strong>Функции:</strong> ${tzData.features.length > 0 ? tzData.features.join(', ') : 'Базовые'}</div>
+                    <div>• <strong>Срок:</strong> ${tzData.deadline}</div>
+                    <div style="margin-top: 6px; border-top: 1px dashed var(--border-color); padding-top: 6px; color: var(--accent-cyan); font-weight: 700;">• Оценка: ~$${tzData.estimateMin} - $${tzData.estimateMax}</div>
+                </div>
+                <div class="chat-cta-container">
+                    <button class="chat-btn chat-btn-primary" id="btn-chat-tg"><i class="fa-brands fa-telegram"></i> ОТПРАВИТЬ РАЗРАБОТЧИКУ</button>
+                    <button class="chat-btn chat-btn-secondary" id="btn-chat-copy"><i class="fa-solid fa-copy"></i> СКОПИРОВАТЬ ТЗ</button>
+                </div>
+            `;
+            
+            appendMessage('agent', summaryHtml, true);
+            
+            // Bind buttons inside summary bubble
+            document.getElementById('btn-chat-copy').addEventListener('click', () => {
+                navigator.clipboard.writeText(md).then(() => {
+                    const btn = document.getElementById('btn-chat-copy');
+                    btn.innerHTML = `<i class="fa-solid fa-check"></i> ТЗ СКОПИРОВАНО!`;
+                    setTimeout(() => {
+                        btn.innerHTML = `<i class="fa-solid fa-copy"></i> СКОПИРОВАТЬ ТЗ`;
+                    }, 2000);
+                });
+            });
+
+            document.getElementById('btn-chat-tg').addEventListener('click', () => {
+                const textForUrl = encodeURIComponent(`Привет! Я составил ТЗ на сайте:\n\n${md}`);
+                window.open(`https://t.me/knrcharge?text=${textForUrl}`, '_blank');
+            });
+
+            speak('Готово! Вы можете скопировать сгенерированное ТЗ или сразу отправить его мне в Telegram для детального обсуждения. Жду вас в ЛС! 🚀', 600, () => {
+                setChips(summaryChips);
+            });
+
+        }, 800);
+    }
+
+    // Input Handling for Custom Queries
+    function handleCustomInput() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        chatInput.value = '';
+        appendMessage('user', text);
+
+        showTypingIndicator();
+        setTimeout(() => {
+            // Check if the user is in the middle of a form state
+            if (currentState !== 'idle' && currentState !== 'tz-summary') {
+                appendMessage('agent', 'Пожалуйста, используйте кнопки-подсказки выше для завершения опроса ТЗ или нажмите **«❌ Отмена»**.');
+                return;
+            }
+
+            const cleanText = text.toLowerCase();
+            let matchedAnswer = null;
+
+            // Search in QA database
+            for (let qa of qaDatabase) {
+                const matched = qa.keys.some(key => cleanText.includes(key));
+                if (matched) {
+                    matchedAnswer = qa.answer;
+                    break;
+                }
+            }
+
+            if (matchedAnswer) {
+                appendMessage('agent', matchedAnswer);
+            } else {
+                appendMessage('agent', 'Интересный вопрос! Я пока учусь, поэтому могу не знать точного ответа. Напишите создателю студии напрямую в Telegram: **[@knrcharge](https://t.me/knrcharge)** — он ответит на любой технический вопрос.');
+            }
+            scrollToBottom();
+        }, 800);
+    }
+
+    chatSendBtn.addEventListener('click', handleCustomInput);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleCustomInput();
+        }
+    });
+
+    // Initialize Suggestions
+    setChips(idleChips);
+});
+
