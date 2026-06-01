@@ -284,10 +284,12 @@ header {
     color: var(--text-primary);
 }
 
-.logo-icon {
-    font-size: 1.1rem;
-    color: var(--accent-violet);
-    text-shadow: 0 0 10px var(--accent-purple-glow);
+.logo-img {
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    object-fit: cover;
+    box-shadow: 0 0 10px var(--accent-purple-glow);
 }
 
 .logo-text {
