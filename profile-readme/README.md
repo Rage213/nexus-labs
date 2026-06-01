@@ -26,9 +26,10 @@
 ## 📊 Моя статистика на GitHub / GitHub Stats
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Rage213&show_icons=true&theme=tokyonight&count_private=true" alt="Matvey's GitHub Stats" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Rage213&theme=tokyonight" alt="Stats" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Rage213&theme=tokyonight" alt="Repos per Language" />
   <br/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Rage213&layout=compact&theme=tokyonight" alt="Top Languages" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Rage213&theme=tokyonight" alt="GitHub Streak" />
 </div>
 
 ---
