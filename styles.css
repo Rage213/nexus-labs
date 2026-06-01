@@ -630,13 +630,29 @@ header {
     border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 2.2rem 2rem;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-    will-change: transform;    -webkit-}
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.stack-category::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 6px;
+    border: 1px solid rgba(139, 92, 246, 0.45);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.12);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
 
 .stack-category:hover {
-    border-color: var(--accent-violet);
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
     transform: translateY(-2px);
+}
+
+.stack-category:hover::before {
+    opacity: 1;
 }
 
 .stack-category h3 {
@@ -696,13 +712,30 @@ header {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 2.5rem 2rem;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-    will-change: transform;    -webkit-}
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+/* Glow pre-rendered, only opacity animates — zero repaint */
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 8px;
+    border: 1px solid rgba(139, 92, 246, 0.45);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.18);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
 
 .service-card:hover {
-    border-color: rgba(139, 92, 246, 0.4);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15), inset 0 0 15px rgba(139, 92, 246, 0.05);
     transform: translateY(-5px);
+}
+
+.service-card:hover::before {
+    opacity: 1;
 }
 
 .service-icon {
@@ -776,13 +809,30 @@ header {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-    will-change: transform;    -webkit-}
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 8px;
+    border: 1px solid rgba(59, 130, 246, 0.45);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.18);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
 
 .project-card:hover {
-    border-color: rgba(59, 130, 246, 0.4);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15), inset 0 0 15px rgba(59, 130, 246, 0.05);
     transform: translateY(-5px);
+}
+
+.project-card:hover::before {
+    opacity: 1;
 }
 
 .project-image {
