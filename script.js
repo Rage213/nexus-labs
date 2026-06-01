@@ -53,14 +53,14 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// --- INTERSECTION OBSERVER FOR FADE-IN-UP SCROLL ANIMATIONS ---
+// --- INTERSECTION OBSERVER FOR SCROLL ANIMATIONS ---
 document.addEventListener('DOMContentLoaded', () => {
-    const fadeElements = document.querySelectorAll('.fade-in-up');
+    const animElements = document.querySelectorAll('.fade-in-up, .scale-in, .reveal-left, .reveal-right');
     
     const observerOptions = {
         root: null,
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Trigger slightly before it is fully in view
+        threshold: 0.05, // Trigger slightly earlier for a faster, smoother feel
+        rootMargin: '0px 0px -40px 0px'
     };
     
     const observer = new IntersectionObserver((entries, observer) => {
@@ -72,9 +72,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
     
-    fadeElements.forEach(element => {
+    animElements.forEach(element => {
         observer.observe(element);
     });
+});
+
+// --- SCROLL EFFECTS (PROGRESS BAR & BLUR HEADER) ---
+const scrollBar = document.getElementById('scroll-bar');
+const headerElement = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    // 1. Scroll Progress Bar
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    if (scrollBar) {
+        scrollBar.style.width = scrolled + '%';
+    }
+    
+    // 2. Shrink and Blur Header on Scroll
+    if (headerElement) {
+        if (winScroll > 30) {
+            headerElement.classList.add('scrolled');
+        } else {
+            headerElement.classList.remove('scrolled');
+        }
+    }
 });
 
 // --- СИМУЛЯЦИЯ ЖИВЫХ ЛОГОВ ДАШБОРДА ---

@@ -194,16 +194,102 @@ body {
     z-index: 1;
 }
 
-/* Scroll Fade In Up System */
+/* Scroll Animation System */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-in-up.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scale-in.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-35px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(35px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Scroll Progress Bar */
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 1000;
+    pointer-events: none;
+    background: transparent;
+}
+
+.scroll-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-violet) 0%, var(--accent-cyan) 100%);
+    box-shadow: 0 0 8px var(--accent-purple-glow), 0 0 12px rgba(6, 182, 212, 0.4);
+    transition: width 0.1s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+/* Shrink & Blur Header on Scroll */
+header {
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    background: rgba(3, 3, 5, 0.88);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 1px 0 var(--border-color);
+}
+
+header.scrolled .nav-container {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+/* Tab Fade In Animation for Dashboard Mockup */
+@keyframes tabFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dash-tab-content:not(.hidden) {
+    animation: tabFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Typography */
