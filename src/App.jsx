@@ -61,45 +61,9 @@ export default function App() {
         return () => observer.disconnect();
     }, []);
 
-    // 3. Website copy protection and devtools blocking
+    // 3. Website copy protection and devtools blocking (Temporarily disabled for debugging)
     useEffect(() => {
-        const preventDefault = e => e.preventDefault();
-        
-        document.addEventListener('contextmenu', preventDefault);
-        document.addEventListener('selectstart', preventDefault);
-        document.addEventListener('copy', preventDefault);
-
-        const handleKeyDown = e => {
-            // F12 (123)
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+Shift+I (73), Ctrl+Shift+J (74), Ctrl+Shift+C (67)
-            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+U (85) (View Source)
-            if (e.ctrlKey && e.keyCode === 85) {
-                e.preventDefault();
-                return false;
-            }
-            // Ctrl+S (83) (Save Page)
-            if (e.ctrlKey && e.keyCode === 83) {
-                e.preventDefault();
-                return false;
-            }
-        };
-
-        document.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            document.removeEventListener('contextmenu', preventDefault);
-            document.removeEventListener('selectstart', preventDefault);
-            document.removeEventListener('copy', preventDefault);
-            document.removeEventListener('keydown', handleKeyDown);
-        };
+        // Disabled for debugging
     }, []);
 
     return (
