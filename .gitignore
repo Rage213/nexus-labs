@@ -146,6 +146,8 @@ coverage.xml
 *.json
 !finder_config.json
 !vector_index.json
+!package.json
+!package-lock.json
 
 # Node/React
 node_modules/
