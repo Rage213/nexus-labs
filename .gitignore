@@ -146,3 +146,10 @@ coverage.xml
 *.json
 !finder_config.json
 !vector_index.json
+
+# Node/React
+node_modules/
+.npm
+package-lock.json
+.vite
+
