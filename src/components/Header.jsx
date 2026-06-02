@@ -21,7 +21,7 @@ export default function Header({ activeSection }) {
         <header className={activeSection ? 'scrolled' : ''}>
             <div className="nav-container">
                 <a href="#" className="logo" onClick={closeMobileMenu}>
-                    <img src="/logo.png" alt="NEXUS LABS" className="logo-img" />
+                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="NEXUS LABS" className="logo-img" />
                     <span className="logo-text">NEXUS_LABS</span>
                 </a>
                 <nav>
