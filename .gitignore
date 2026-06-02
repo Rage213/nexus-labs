@@ -152,6 +152,5 @@ coverage.xml
 # Node/React
 node_modules/
 .npm
-package-lock.json
 .vite
 
