@@ -28,7 +28,7 @@ export default function Portfolio() {
                             </div>
                             <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
                                 <a
-                                    href="https://t.me/frrrrrilannssbot"
+                                    href="https://t.me/nexusllabsbot"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="btn btn-primary"
@@ -97,7 +97,7 @@ export default function Portfolio() {
                             </div>
                             <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
                                 <a
-                                    href="https://t.me/lf_1453136053_77lw_bot"
+                                    href="https://t.me/nexus_pay_demo_bot"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="btn btn-primary"
