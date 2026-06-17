@@ -9,8 +9,73 @@ export default function Portfolio() {
                     <p>Telegram-боты и инструменты автоматизации, разработанные для решения реальных бизнес-задач.</p>
                 </div>
                 <div className="portfolio-grid">
-                    {/* Project 0: AI Outreach Userbot */}
+                    {/* Project 0: FunPay Auto-Delivery & License Server */}
                     <div className="project-card fade-in-up" style={{ transitionDelay: '0.05s' }}>
+                        <div className="project-image">
+                            <div className="project-mockup">
+                                <i className="fa-solid fa-key" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
+                                <span>FunPay Plugin · Flask Server</span>
+                            </div>
+                        </div>
+                        <div className="project-info">
+                            <span className="project-category">АВТОМАТИЗАЦИЯ / B2B</span>
+                            <h3>Автовыдача FunPay & Сервер лицензий</h3>
+                            <p>Многопоточный плагин автовыдачи для торговой площадки FunPay с каскадной закупкой (из Telegram-ботов и по API) и Flask-сервером лицензий (с привязкой к HWID и проверкой срока действия ключа).</p>
+                            <div className="project-tags">
+                                <span>Telethon</span>
+                                <span>Flask</span>
+                                <span>SQLite</span>
+                                <span>FunPay API</span>
+                                <span>B2B</span>
+                            </div>
+                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
+                                <a
+                                    href="https://t.me/knrcharge"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="btn btn-primary"
+                                    style={{
+                                        fontSize: '0.8rem',
+                                        padding: '0.5rem 1rem',
+                                        flex: 1,
+                                        textAlign: 'center',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        gap: '0.5rem',
+                                        textDecoration: 'none',
+                                        color: '#fff',
+                                        background: 'var(--accent-blue)',
+                                        borderRadius: '4px',
+                                        fontWeight: '500',
+                                        transition: 'opacity 0.2s'
+                                    }}
+                                >
+                                    <i className="fa-solid fa-comment-dots"></i> Купить / Заказать
+                                </a>
+                                <span
+                                    style={{
+                                        fontSize: '0.8rem',
+                                        padding: '0.5rem 1rem',
+                                        flex: 1,
+                                        textAlign: 'center',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        gap: '0.5rem',
+                                        border: '1px solid var(--border-color)',
+                                        background: 'rgba(255, 255, 255, 0.02)',
+                                        color: 'var(--text-secondary)',
+                                        borderRadius: '4px'
+                                    }}
+                                >
+                                    <i className="fa-solid fa-lock" style={{ fontSize: '0.75rem' }}></i> Код приватный
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Project 1: AI Outreach Userbot */}
+                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.1s' }}>
                         <div className="project-image">
                             <div className="project-mockup">
                                 <i className="fa-solid fa-bolt" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
@@ -72,8 +137,8 @@ export default function Portfolio() {
                             </div>
                         </div>
                     </div>
-                    {/* Project 1 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.1s' }}>
+                    {/* Project 2 */}
+                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.15s' }}>
                         <div className="project-image">
                             <div className="project-mockup">
                                 <i className="fa-brands fa-telegram" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
@@ -141,8 +206,8 @@ export default function Portfolio() {
                             </div>
                         </div>
                     </div>
-                    {/* Project 2 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.15s' }}>
+                    {/* Project 3 */}
+                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.2s' }}>
                         <div className="project-image">
                             <div className="project-mockup">
                                 <i className="fa-solid fa-credit-card" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
