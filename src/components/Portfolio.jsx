@@ -28,6 +28,30 @@ export default function Portfolio() {
                             </div>
                             <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
                                 <a
+                                    href="https://t.me/frrrrrilannssbot"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="btn btn-primary"
+                                    style={{
+                                        fontSize: '0.8rem',
+                                        padding: '0.5rem 1rem',
+                                        flex: 1,
+                                        textAlign: 'center',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        gap: '0.5rem',
+                                        textDecoration: 'none',
+                                        color: '#fff',
+                                        background: 'var(--accent-blue)',
+                                        borderRadius: '4px',
+                                        fontWeight: '500',
+                                        transition: 'opacity 0.2s'
+                                    }}
+                                >
+                                    <i className="fa-solid fa-play"></i> Запустить демо
+                                </a>
+                                <a
                                     href="https://github.com/Rage213/portfolio/tree/main/tg-shop-bot"
                                     target="_blank"
                                     rel="noreferrer"
@@ -72,6 +96,30 @@ export default function Portfolio() {
                                 <span>aiohttp</span>
                             </div>
                             <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
+                                <a
+                                    href="https://t.me/lf_1453136053_77lw_bot"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="btn btn-primary"
+                                    style={{
+                                        fontSize: '0.8rem',
+                                        padding: '0.5rem 1rem',
+                                        flex: 1,
+                                        textAlign: 'center',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        gap: '0.5rem',
+                                        textDecoration: 'none',
+                                        color: '#fff',
+                                        background: 'var(--accent-blue)',
+                                        borderRadius: '4px',
+                                        fontWeight: '500',
+                                        transition: 'opacity 0.2s'
+                                    }}
+                                >
+                                    <i className="fa-solid fa-play"></i> Запустить демо
+                                </a>
                                 <a
                                     href="https://github.com/Rage213/portfolio/tree/main/crypto-payment-bot"
                                     target="_blank"
