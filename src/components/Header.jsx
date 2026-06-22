@@ -43,10 +43,13 @@ export default function Header({ activeSection }) {
                             </a>
                         </li>
                     </ul>
-                    <div
+                    <button
+                        type="button"
                         className={`menu-toggle ${isMobileOpen ? 'open' : ''}`}
                         id="mobile-menu"
                         onClick={toggleMobileMenu}
+                        aria-label="Открыть меню"
+                        aria-expanded={isMobileOpen}
                     >
                         <span
                             className="bar"
@@ -60,7 +63,7 @@ export default function Header({ activeSection }) {
                             className="bar"
                             style={isMobileOpen ? { transform: 'rotate(45deg) translate(-5px, -6px)' } : {}}
                         ></span>
-                    </div>
+                    </button>
                 </nav>
             </div>
         </header>

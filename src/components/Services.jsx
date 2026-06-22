@@ -4,6 +4,7 @@ export default function Services() {
         <section id="services" className="services-section">
             <div className="container">
                 <div className="section-header fade-in-up">
+                    <span className="sub-title">Service modules</span>
                     <h2>Наши Услуги</h2>
                     <p>Решения для продавцов цифровых товаров, арбитражников и авторов Telegram-каналов.</p>
                 </div>

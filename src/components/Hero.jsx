@@ -5,34 +5,38 @@ export default function Hero() {
         <section className="hero-section">
             <div className="container hero-container">
                 <div className="hero-content">
+                    <div className="hero-kicker fade-in-up">
+                        <span>Python automation studio</span>
+                        <span>Telegram commerce</span>
+                    </div>
                     <h1 className="fade-in-up">
-                        Автоматизация<br />
-                        бизнеса и Telegram-боты<br />
-                        <span className="text-gradient">под ключ</span>
+                        Автоматизация,<br />
+                        которая работает<br />
+                        <span className="text-gradient">после оплаты</span>
                     </h1>
                     <p className="hero-subtitle fade-in-up" style={{ transitionDelay: '0.1s' }}>
-                        Пишем софт, который продает и работает за вас 24/7. Интеграция касс, автовыдача, скрипты для маркетплейсов.
+                        Собираем Telegram-магазины, парсеры, платежные сценарии и служебные боты в один управляемый контур: заявки, оплаты, выдача и отчеты без ручной рутины.
                     </p>
                     <div className="hero-cta fade-in-up" style={{ transitionDelay: '0.2s' }}>
                         <a href="#contact" className="btn btn-primary">
-                            ЗАКАЗАТЬ ПРОЕКТ <i className="fa-solid fa-chevron-right"></i>
+                            Обсудить задачу <i className="fa-solid fa-chevron-right"></i>
                         </a>
                         <a href="#portfolio" className="btn btn-secondary">
-                            НАШИ КЕЙСЫ
+                            Смотреть кейсы
                         </a>
                     </div>
                     <div className="hero-stats fade-in-up" style={{ transitionDelay: '0.3s' }}>
                         <div className="stat-item">
-                            <h3>Telegram-боты</h3>
-                            <p>Магазины и автоподдержка</p>
+                            <h3>aiogram 3</h3>
+                            <p>Боты, магазины, FSM</p>
                         </div>
                         <div className="stat-item">
-                            <h3>Веб-парсинг</h3>
-                            <p>Парсеры и мониторинг</p>
+                            <h3>24/7</h3>
+                            <p>Мониторинг и автовыдача</p>
                         </div>
                         <div className="stat-item">
-                            <h3>Разработка софта</h3>
-                            <p>E-commerce системы</p>
+                            <h3>Deploy</h3>
+                            <p>Render, VPS, Docker</p>
                         </div>
                     </div>
                 </div>

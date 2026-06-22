@@ -4,6 +4,7 @@ export default function Portfolio() {
         <section id="portfolio" className="portfolio-section">
             <div className="container">
                 <div className="section-header fade-in-up">
+                    <span className="sub-title">Production samples</span>
                     <h2>Реализованные кейсы</h2>
                     <p>Telegram-боты и инструменты автоматизации, разработанные для решения реальных бизнес-задач.</p>
                 </div>

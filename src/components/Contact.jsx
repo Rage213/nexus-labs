@@ -3,22 +3,22 @@ export default function Contact() {
     return (
         <section id="contact" className="contact-section">
             <div className="container">
-                <div className="contact-form-block fade-in-up" style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
-                    <h2 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Обсудить проект</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '2.5rem' }}>
-                        Напишите в Telegram, чтобы детально разобрать ваше техническое задание, рассчитать точную стоимость и запустить автоматизацию в работу.
+                <div className="contact-form-block contact-cta fade-in-up">
+                    <span className="sub-title">Start request</span>
+                    <h2>Обсудить проект</h2>
+                    <p>
+                        Напишите в Telegram: разберем задачу, соберем понятное ТЗ, оценим сроки и выберем самый быстрый путь к запуску.
                     </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+                    <div className="contact-actions">
                         <a
                             href="https://t.me/knrcharge"
                             target="_blank"
                             rel="noreferrer"
                             className="btn btn-primary"
-                            style={{ fontSize: '1.1rem', padding: '1.1rem 2.5rem', borderRadius: '6px' }}
                         >
-                            <i className="fa-brands fa-telegram" style={{ fontSize: '1.3rem' }}></i> НАПИСАТЬ В TELEGRAM
+                            <i className="fa-brands fa-telegram"></i> Написать в Telegram
                         </a>
-                        <div style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
+                        <div className="response-time">
                             <i className="fa-solid fa-bolt"></i> Среднее время ответа: 15 минут
                         </div>
                     </div>

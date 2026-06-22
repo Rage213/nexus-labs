@@ -6,6 +6,7 @@ export default function About() {
             <section id="about" className="about-section">
                 <div className="container">
                     <div className="section-header fade-in-up">
+                        <span className="sub-title">Stack map</span>
                         <h2>Инфраструктура и стек</h2>
                         <p>Используем современные технологии для разработки производительного софта.</p>
                     </div>
@@ -45,6 +46,7 @@ export default function About() {
             <section className="about-section">
                 <div className="container">
                     <div className="section-header fade-in-up">
+                        <span className="sub-title">Delivery rules</span>
                         <h2>Почему выбирают нас</h2>
                         <p>Создаем надежные решения с фокусом на результат и стабильность.</p>
                     </div>
@@ -52,7 +54,7 @@ export default function About() {
                         <div className="stack-category fade-in-up" style={{ transitionDelay: '0.1s' }}>
                             <h3><i className="fa-solid fa-circle-check"></i> Без воды</h3>
                             <div className="stack-tags">
-                                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', fontFamily: 'var(--font-body)', textTransform: 'none' }}>
+                                <p className="stack-text">
                                     Строгое соблюдение ТЗ и сроков без лишней бюрократии.
                                 </p>
                             </div>
@@ -60,7 +62,7 @@ export default function About() {
                         <div className="stack-category fade-in-up" style={{ transitionDelay: '0.2s' }}>
                             <h3><i className="fa-solid fa-rocket"></i> Быстрый деплой</h3>
                             <div className="stack-tags">
-                                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', fontFamily: 'var(--font-body)', textTransform: 'none' }}>
+                                <p className="stack-text">
                                     Помогаем с выбором хостинга и установкой софта на сервер под ключ.
                                 </p>
                             </div>
@@ -68,7 +70,7 @@ export default function About() {
                         <div className="stack-category fade-in-up" style={{ transitionDelay: '0.3s' }}>
                             <h3><i className="fa-solid fa-code-compare"></i> Чистый код</h3>
                             <div className="stack-tags">
-                                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', fontFamily: 'var(--font-body)', textTransform: 'none' }}>
+                                <p className="stack-text">
                                     Масштабируемая архитектура, готовая к развитию и обновлению.
                                 </p>
                             </div>
