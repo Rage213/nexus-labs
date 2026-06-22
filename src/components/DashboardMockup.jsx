@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const LOG_TEMPLATES = [
     "Aiogram: запуск Telegram-магазина прошел успешно",

@@ -1,7 +1,6 @@
-import React from 'react';
 import DashboardMockup from './DashboardMockup';
 
-export default function Hero({ onOrderClick }) {
+export default function Hero() {
     return (
         <section className="hero-section">
             <div className="container hero-container">
@@ -15,14 +14,7 @@ export default function Hero({ onOrderClick }) {
                         Пишем софт, который продает и работает за вас 24/7. Интеграция касс, автовыдача, скрипты для маркетплейсов.
                     </p>
                     <div className="hero-cta fade-in-up" style={{ transitionDelay: '0.2s' }}>
-                        <a
-                            href="#contact"
-                            className="btn btn-primary"
-                            onClick={(e) => {
-                                // If they click on order project, we can trigger the AI chatbot to open and start the spec flow if we want!
-                                // For now, let it scroll normally to contact, but we can also trigger onOrderClick.
-                            }}
-                        >
+                        <a href="#contact" className="btn btn-primary">
                             ЗАКАЗАТЬ ПРОЕКТ <i className="fa-solid fa-chevron-right"></i>
                         </a>
                         <a href="#portfolio" className="btn btn-secondary">
