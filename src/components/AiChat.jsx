@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 const QA_DATABASE = [
     {
         keys: ['цена', 'стоимость', 'прайс', 'сколько', 'дорого', 'дешево', 'руб', 'доллар', 'бакс'],
-        answer: 'Цены на разработку начинаются от **1 000 руб.** за простые парсеры и от **1 500 руб.** за функциональные Telegram-боты. Для точного расчета вы можете запустить интерактивный конструктор, нажав на кнопку **«🤖 Заказать бота»** или **«📊 Написать парсер»** ниже!'
+        answer: 'Цены начинаются от **15 000 ₽ / $200** за Telegram-бота для заявок, от **25 000 ₽ / $335** за парсер и от **35 000 ₽ / $470** за Telegram-магазин. Точная сумма зависит от функций, интеграций и сроков.'
     },
     {
         keys: ['срок', 'время', 'быстро', 'когда', 'дней', 'день', 'неделя'],
@@ -77,6 +77,20 @@ const SUMMARY_CHIPS = [
     { label: '❌ Закрыть чат', action: 'close' }
 ];
 
+const RUB_PER_USD = 75;
+
+function formatMoneyRub(value) {
+    return `${value.toLocaleString('ru-RU')} ₽`;
+}
+
+function formatMoneyUsd(value) {
+    return `$${Math.round(value / RUB_PER_USD / 5) * 5}`;
+}
+
+function formatBudgetRange(min, max) {
+    return `${formatMoneyRub(min)} - ${formatMoneyRub(max)} / ${formatMoneyUsd(min)} - ${formatMoneyUsd(max)}`;
+}
+
 export default function AiChat() {
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
@@ -137,26 +151,30 @@ export default function AiChat() {
 
     // Calculate budget estimation based on tzData
     const calculateEstimate = (updatedTz) => {
-        let baseMin = 1000;
-        let baseMax = 1500;
+        let baseMin = 25000;
+        let baseMax = 45000;
 
         if (updatedTz.type === 'Telegram-бот') {
-            baseMin = 1500;
-            baseMax = 2500;
+            baseMin = 15000;
+            baseMax = 30000;
             if (updatedTz.subType && updatedTz.subType.includes('Магазин')) {
-                baseMin += 500;
-                baseMax += 1000;
+                baseMin = 35000;
+                baseMax = 65000;
+            }
+            if (updatedTz.subType && updatedTz.subType.includes('техподдержки')) {
+                baseMin = 25000;
+                baseMax = 50000;
             }
         }
 
         updatedTz.features.forEach(() => {
-            baseMin += 200;
-            baseMax += 400;
+            baseMin += 5000;
+            baseMax += 10000;
         });
 
         if (updatedTz.deadline && updatedTz.deadline.includes('Срочно')) {
-            baseMin += 300;
-            baseMax += 500;
+            baseMin += 7000;
+            baseMax += 15000;
         }
 
         return { min: baseMin, max: baseMax };
@@ -169,7 +187,7 @@ export default function AiChat() {
                `▪️ Направление: ${data.subType}\n` +
                `▪️ Функции: ${featuresText}\n` +
                `▪️ Срок сдачи: ${data.deadline}\n` +
-               `▪️ Примерный бюджет: ${data.estimateMin} - ${data.estimateMax} руб.`;
+               `▪️ Примерный бюджет: ${formatBudgetRange(data.estimateMin, data.estimateMax)}`;
     };
 
     const handleCopyTz = (data) => {
@@ -250,7 +268,7 @@ export default function AiChat() {
                 speak('Давайте соберем ТЗ для вашего **парсер/скрипта**. Какая основная задача софта?');
             } else if (chip.action === 'view-prices') {
                 speak(
-                    'Наши цены:\n- Простые парсеры: от **1 000 руб.**\n- Скрипты автоматизации: от **1 200 руб.**\n- Telegram-боты: от **1 500 руб.**\n- Сложные e-commerce экосистемы под ключ: расчет индивидуально.\n\nКакая разработка вас интересует?'
+                    'Наши цены:\n- Telegram-бот для заявок: от **15 000 ₽ / $200**\n- Парсер или мониторинг цен: от **25 000 ₽ / $335**\n- Telegram-магазин: от **35 000 ₽ / $470**\n- AI-бот по базе знаний: от **60 000 ₽ / $800**\n\nТочная цена зависит от функций, интеграций, базы данных, платежей и сроков.'
                 );
             } else if (chip.action === 'ask-question') {
                 speak('Спрашивайте! Напишите свой вопрос в чат, и я сразу на него отвечу. Либо нажмите на одну из кнопок заказа выше.');
@@ -293,7 +311,7 @@ export default function AiChat() {
                      <div>• <strong>Тип:</strong> ${updatedTz.type} (${updatedTz.subType})</div>
                      <div>• <strong>Функции:</strong> ${updatedTz.features.length > 0 ? updatedTz.features.join(', ') : 'Базовые'}</div>
                      <div>• <strong>Срок:</strong> ${updatedTz.deadline}</div>
-                     <div style="margin-top: 6px; border-top: 1px dashed var(--border-color); padding-top: 6px; color: var(--accent-cyan); font-weight: 700;">• Оценка: ~${updatedTz.estimateMin} - ${updatedTz.estimateMax} руб.</div>
+                     <div style="margin-top: 6px; border-top: 1px dashed var(--border-color); padding-top: 6px; color: var(--accent-cyan); font-weight: 700;">• Оценка: ~${formatBudgetRange(updatedTz.estimateMin, updatedTz.estimateMax)}</div>
                 </div>
             `;
             

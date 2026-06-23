@@ -27,7 +27,7 @@ export default function Hero() {
                     </div>
                     <div className="hero-stats fade-in-up" style={{ transitionDelay: '0.3s' }}>
                         <div className="stat-item">
-                            <h3>от $150</h3>
+                            <h3>15 000 ₽ / $200</h3>
                             <p>Бот для заявок и меню</p>
                         </div>
                         <div className="stat-item">
