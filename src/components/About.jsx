@@ -1,7 +1,33 @@
 
 export default function About() {
+    const processSteps = [
+        ['01', 'Разбор задачи', 'Коротко фиксируем цель, сценарии, роли пользователей и что должно происходить после заявки или оплаты.'],
+        ['02', 'Прототип в Telegram', 'Собираем рабочую логику: кнопки, формы, база, уведомления, админские команды и тестовые данные.'],
+        ['03', 'Интеграции', 'Подключаем платежи, таблицы, CRM, AI API, парсеры, вебхуки или другие сервисы под задачу.'],
+        ['04', 'Запуск на VPS', 'Деплоим, проверяем логи, добавляем автозапуск и передаем понятную инструкцию по управлению.'],
+    ];
+
     return (
         <>
+            <section className="process-section">
+                <div className="container">
+                    <div className="section-header fade-in-up">
+                        <span className="sub-title">Delivery path</span>
+                        <h2>Как запускаем проект</h2>
+                        <p>Без длинной бюрократии: сначала рабочая логика, потом интеграции, тесты и стабильный запуск.</p>
+                    </div>
+                    <div className="process-grid">
+                        {processSteps.map(([number, title, text], index) => (
+                            <div className="process-step fade-in-up" style={{ transitionDelay: `${0.08 + index * 0.08}s` }} key={title}>
+                                <span>{number}</span>
+                                <h3>{title}</h3>
+                                <p>{text}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Infrastructure / Stack Section */}
             <section id="about" className="about-section">
                 <div className="container">

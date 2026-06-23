@@ -1,101 +1,82 @@
 
 export default function Services() {
+    const services = [
+        {
+            icon: 'fa-brands fa-telegram',
+            title: 'Telegram-бот для бизнеса',
+            price: 'от $150',
+            text: 'Заявки, меню, уведомления, админка и база клиентов для услуг, студий, школ и локального бизнеса.',
+            features: [
+                ['Заявки и уведомления', 'Клиент оставляет заявку, администратор сразу получает ее в Telegram.'],
+                ['Меню и сценарии', 'Кнопки, формы, FAQ, маршрутизация по услугам и быстрые ответы.'],
+                ['База клиентов', 'Хранение контактов, статусов, истории обращений и выгрузка данных.'],
+            ],
+        },
+        {
+            icon: 'fa-solid fa-cart-shopping',
+            title: 'Telegram-магазин',
+            price: 'от $300',
+            text: 'Каталог, корзина, заказы, оплата и админ-панель для цифровых товаров, курсов, доступов и услуг.',
+            features: [
+                ['Каталог и корзина', 'Категории, карточки товаров, количество, итоговая сумма и оформление заказа.'],
+                ['Оплата и автовыдача', 'CryptoBot, LAVA, AAIO или ручная проверка с уведомлением администратора.'],
+                ['Админ-панель', 'Добавление товаров, управление заказами, уведомления и базовая статистика.'],
+            ],
+        },
+        {
+            icon: 'fa-solid fa-chart-line',
+            title: 'Парсер / мониторинг цен',
+            price: 'от $250',
+            text: 'Сбор данных, отслеживание конкурентов, история изменений и Telegram-уведомления по нужным условиям.',
+            features: [
+                ['Сбор данных', 'Товары, цены, объявления, статусы, таблицы и другие открытые данные.'],
+                ['Уведомления', 'Сообщение в Telegram при изменении цены, наличии, рейтинга или статуса.'],
+                ['Отчеты', 'История изменений, JSON/CSV/Google Sheets и регулярные сводки.'],
+            ],
+        },
+        {
+            icon: 'fa-solid fa-brain',
+            title: 'AI-бот по базе знаний',
+            price: 'от $500',
+            text: 'Ассистент, который отвечает по документам, FAQ, инструкциям и внутренней базе компании.',
+            features: [
+                ['Ответы по документам', 'Бот ищет релевантные фрагменты и отвечает по контексту, а не случайно.'],
+                ['Поддержка клиентов', 'FAQ, регламенты, инструкции, шаблоны ответов и маршрутизация вопросов.'],
+                ['Интеграции', 'Google Docs, Notion, PDF, CRM, таблицы и деплой на VPS.'],
+            ],
+        },
+    ];
+
     return (
         <section id="services" className="services-section">
             <div className="container">
                 <div className="section-header fade-in-up">
                     <span className="sub-title">Service modules</span>
-                    <h2>Наши Услуги</h2>
-                    <p>Решения для продавцов цифровых товаров, арбитражников и авторов Telegram-каналов.</p>
+                    <h2>Что можно заказать</h2>
+                    <p>Готовые направления, которые быстро превращаются в рабочий бот, парсер или внутренний инструмент.</p>
                 </div>
                 <div className="services-grid">
-                    {/* Service 1 */}
-                    <div className="service-card fade-in-up" style={{ transitionDelay: '0.1s' }}>
-                        <div className="service-icon"><i className="fa-brands fa-telegram"></i></div>
-                        <h3>Telegram-магазины</h3>
-                        <p>Полноценные шопы на Aiogram 3. Каталог, корзина, профиль, интеграция CryptoBot/LAVA, автовыдача.</p>
-                        <ul className="service-features">
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Каталог и корзина</span>
-                                    <p className="feature-desc">Удобный интерфейс выбора товаров с поддержкой категорий, скидок и промокодов.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Прием платежей</span>
-                                    <p className="feature-desc">Автоматическая интеграция платежных шлюзов CryptoBot, LAVA, AAIO и других систем.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Автовыдача товаров</span>
-                                    <p className="feature-desc">Мгновенная доставка файлов, ключей или доступов покупателю в чат сразу после оплаты.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    {/* Service 2 */}
-                    <div className="service-card fade-in-up" style={{ transitionDelay: '0.2s' }}>
-                        <div className="service-icon"><i className="fa-solid fa-sliders"></i></div>
-                        <h3>Скрипты для маркетплейсов</h3>
-                        <p>Автоподнятие лотов, парсеры цен конкурентов, чекеры для FunPay и Digiseller.</p>
-                        <ul className="service-features">
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Автоподнятие лотов</span>
-                                    <p className="feature-desc">Автоматическое регулярное поднятие ваших лотов на биржах для удержания верхних позиций.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Парсеры цен</span>
-                                    <p className="feature-desc">Отслеживание изменения цен конкурентов и автоматическая подстройка вашего ценника.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Чекеры аккаунтов</span>
-                                    <p className="feature-desc">Автоматизированная валидация баз данных, проверка балансов и статусов аккаунтов.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    {/* Service 3 */}
-                    <div className="service-card fade-in-up" style={{ transitionDelay: '0.3s' }}>
-                        <div className="service-icon"><i className="fa-solid fa-code"></i></div>
-                        <h3>Утилиты и парсеры</h3>
-                        <p>Сбор данных, боты-модераторы, автоматизация рутинных процессов.</p>
-                        <ul className="service-features">
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Сбор баз данных</span>
-                                    <p className="feature-desc">Быстрый скрапинг информации с закрытых или открытых веб-ресурсов в удобном Excel/JSON формате.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Боты-модераторы</span>
-                                    <p className="feature-desc">Полная автоматизация управления чатами: фильтрация спама, авто-приветствия, выдача прав.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <i className="fa-solid fa-chevron-right"></i>
-                                <div>
-                                    <span className="feature-title">Оптимизация рутины</span>
-                                    <p className="feature-desc">Замена повторяющихся ручных действий на компьютере быстрыми скриптами.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    {services.map((service, index) => (
+                        <div className="service-card fade-in-up" style={{ transitionDelay: `${0.1 + index * 0.08}s` }} key={service.title}>
+                            <div className="service-card-head">
+                                <div className="service-icon"><i className={service.icon}></i></div>
+                                <span className="service-price">{service.price}</span>
+                            </div>
+                            <h3>{service.title}</h3>
+                            <p>{service.text}</p>
+                            <ul className="service-features">
+                                {service.features.map(([title, description]) => (
+                                    <li key={title}>
+                                        <i className="fa-solid fa-chevron-right"></i>
+                                        <div>
+                                            <span className="feature-title">{title}</span>
+                                            <p className="feature-desc">{description}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

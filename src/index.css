@@ -29,6 +29,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -318,6 +319,7 @@ header.scrolled {
     display: flex;
     align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
 .hero-section::after {
@@ -668,6 +670,7 @@ header.scrolled {
     color: var(--text-muted);
 }
 
+.process-section,
 .about-section,
 .services-section,
 .portfolio-section,
@@ -675,7 +678,13 @@ header.scrolled {
     padding: 5.5rem 0;
 }
 
+.process-section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+}
+
 .stack-grid,
+.process-grid,
 .services-grid,
 .portfolio-grid {
     display: grid;
@@ -683,10 +692,19 @@ header.scrolled {
     gap: 1rem;
 }
 
+.process-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.services-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .portfolio-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.process-step,
 .stack-category,
 .service-card,
 .project-card,
@@ -700,6 +718,7 @@ header.scrolled {
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
+.process-step::before,
 .stack-category::before,
 .service-card::before,
 .project-card::before,
@@ -713,12 +732,38 @@ header.scrolled {
     background: linear-gradient(90deg, var(--accent-violet), var(--accent-blue), var(--accent-cyan));
 }
 
+.process-step:hover,
 .stack-category:hover,
 .service-card:hover,
 .project-card:hover {
     transform: translateY(-4px);
     border-color: var(--border-strong);
     background: rgba(20, 22, 33, 0.94);
+}
+
+.process-step {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.45rem;
+}
+
+.process-step span {
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+.process-step h3 {
+    margin: 1.15rem 0 0.7rem;
+    font-size: 1.02rem;
+}
+
+.process-step p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.62;
 }
 
 .stack-category {
@@ -776,6 +821,13 @@ header.scrolled {
     padding: 1.7rem;
 }
 
+.service-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
 .service-icon {
     width: 48px;
     height: 48px;
@@ -787,6 +839,19 @@ header.scrolled {
     border-radius: 8px;
     background: rgba(139, 92, 246, 0.08);
     font-size: 1.35rem;
+}
+
+.service-price {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    padding: 0.35rem 0.55rem;
+    border: 1px solid rgba(139, 92, 246, 0.26);
+    border-radius: 999px;
+    background: rgba(139, 92, 246, 0.08);
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 800;
 }
 
 .service-card > p,
@@ -850,7 +915,7 @@ header.scrolled {
 
 .project-mockup {
     display: grid;
-    gap: 0.8rem;
+    gap: 0.85rem;
     justify-items: center;
     color: var(--text-secondary);
     font-family: var(--font-mono);
@@ -860,6 +925,7 @@ header.scrolled {
 
 .project-mockup i {
     color: var(--accent-cyan) !important;
+    font-size: 2rem;
 }
 
 .project-info {
@@ -885,30 +951,87 @@ header.scrolled {
     min-height: 0;
 }
 
+.project-result {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin: 0 0 1.05rem;
+    padding: 0.8rem;
+    border: 1px solid rgba(6, 182, 212, 0.16);
+    border-radius: 7px;
+    background: rgba(6, 182, 212, 0.055);
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.48;
+}
+
+.project-result i {
+    flex-shrink: 0;
+    margin-top: 0.18rem;
+    color: var(--accent-cyan);
+}
+
 .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-top: 1.15rem !important;
 }
 
-.project-links .btn,
-.project-links span {
+.project-action {
+    min-width: 0;
+    flex: 1 1 145px;
     min-height: 38px !important;
     padding: 0.52rem 0.72rem !important;
     border-radius: 6px !important;
     font-family: var(--font-mono) !important;
     font-size: 0.74rem !important;
     font-weight: 700 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    text-align: center;
+    text-decoration: none;
 }
 
-.project-links .btn-primary {
+.project-action-primary {
     background: linear-gradient(135deg, var(--accent-violet) 0%, var(--accent-blue) 100%) !important;
     color: #ffffff !important;
+    border: 1px solid transparent !important;
 }
 
-.project-links .btn-secondary,
-.project-links span {
+.project-action:not(.project-action-primary),
+.project-action-muted {
     background: rgba(255, 255, 255, 0.02) !important;
     color: var(--text-primary) !important;
     border: 1px solid var(--border-color) !important;
+}
+
+.project-action-muted {
+    color: var(--text-secondary) !important;
+}
+
+.portfolio-footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.portfolio-footer .btn {
+    gap: 0.75rem;
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+}
+
+.portfolio-footer p {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.portfolio-footer a:not(.btn) {
+    color: var(--accent-blue);
+    text-decoration: none;
 }
 
 .contact-section {
@@ -1357,6 +1480,7 @@ footer {
         font-size: 3.1rem;
     }
 
+    .process-grid,
     .portfolio-grid,
     .stack-grid,
     .services-grid {
@@ -1414,6 +1538,7 @@ footer {
     }
 
     .hero-stats,
+    .process-grid,
     .stack-grid,
     .services-grid,
     .portfolio-grid {
@@ -1464,12 +1589,12 @@ footer {
 @media (max-width: 520px) {
     .container,
     .nav-container {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
     }
 
     .hero-section h1 {
-        font-size: 1.86rem;
+        font-size: 1.76rem;
     }
 
     .hero-cta,
@@ -1478,6 +1603,7 @@ footer {
     }
 
     .stack-category,
+    .process-step,
     .service-card,
     .project-info,
     .contact-cta {

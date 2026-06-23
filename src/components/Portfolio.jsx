@@ -1,3 +1,137 @@
+const projects = [
+    {
+        icon: 'fa-solid fa-bolt',
+        category: 'АВТОМАТИЗАЦИЯ / ИИ',
+        title: 'ИИ-Ассистент поиска клиентов',
+        label: 'Telegram Userbot · Gemini',
+        text: 'Мониторит фриланс-чаты, фильтрует лиды по ключевым словам и помогает быстро начинать диалог с клиентом.',
+        result: 'Быстрее находить заявки и отвечать без ручного просмотра десятков чатов.',
+        tags: ['Telethon', 'Gemini', 'asyncio'],
+        actions: [
+            { href: 'https://t.me/knrcharge', icon: 'fa-solid fa-comment-dots', label: 'Заказать похожий', primary: true },
+            { icon: 'fa-solid fa-lock', label: 'Код приватный' },
+        ],
+    },
+    {
+        icon: 'fa-brands fa-telegram',
+        category: 'МАГАЗИНЫ',
+        title: 'Бот-магазин в Telegram',
+        label: 'Telegram Bot · aiogram 3.x',
+        text: 'Каталог, корзина, оформление заказа, SQLite-база и сценарии для продавцов цифровых товаров или услуг.',
+        result: 'Клиент покупает внутри Telegram, администратор получает заказ без ручной переписки.',
+        tags: ['aiogram 3.x', 'aiosqlite', 'FSM'],
+        actions: [
+            { href: 'https://t.me/nexusllabsbot', icon: 'fa-solid fa-play', label: 'Запустить демо', primary: true },
+            { href: 'https://github.com/Rage213/portfolio/tree/main/tg-shop-bot', icon: 'fa-brands fa-github', label: 'Исходный код' },
+        ],
+    },
+    {
+        icon: 'fa-solid fa-credit-card',
+        category: 'ПЛАТЕЖИ',
+        title: 'Crypto Payment Bot',
+        label: 'Telegram Bot · Payments',
+        text: 'Магазин цифровых товаров с крипто-оплатой, проверкой invoice и автоматической выдачей после оплаты.',
+        result: 'Продажи работают 24/7: бот сам проверяет оплату и отправляет доступ покупателю.',
+        tags: ['CryptoBot API', 'aiohttp', 'SQLite'],
+        actions: [
+            { href: 'https://t.me/nexus_pay_demo_bot', icon: 'fa-solid fa-play', label: 'Запустить демо', primary: true },
+            { href: 'https://github.com/Rage213/portfolio/tree/main/crypto-payment-bot', icon: 'fa-brands fa-github', label: 'Исходный код' },
+        ],
+    },
+    {
+        icon: 'fa-solid fa-chart-line',
+        category: 'МОНИТОРИНГ',
+        title: 'Асинхронный парсер цен',
+        label: 'Parser · aiohttp + asyncio',
+        text: 'Отслеживает цены конкурентов, хранит историю изменений и отправляет уведомления в Telegram.',
+        result: 'Помогает вовремя менять цены, видеть рынок и не проверять сайты вручную.',
+        tags: ['aiohttp', 'asyncio', 'JSON'],
+        actions: [
+            { href: 'https://github.com/Rage213/portfolio/tree/main/price-tracker-parser', icon: 'fa-brands fa-github', label: 'Исходный код' },
+        ],
+    },
+    {
+        icon: 'fa-solid fa-shield-halved',
+        category: 'СКРАПИНГ',
+        title: 'Обход антибот-защиты',
+        label: 'Scraper · Playwright',
+        text: 'Браузерная автоматизация для сложных сайтов, где обычный HTTP-запрос не подходит.',
+        result: 'Сбор данных можно вести стабильнее даже на динамических страницах.',
+        tags: ['Playwright', 'aiohttp', 'BeautifulSoup'],
+        actions: [
+            { href: 'https://github.com/Rage213/portfolio/tree/main/anti-bot-scraper', icon: 'fa-brands fa-github', label: 'Исходный код' },
+        ],
+    },
+    {
+        icon: 'fa-solid fa-brain',
+        category: 'ИИ / ЧАТ-БОТЫ',
+        title: 'AI-ассистент с RAG',
+        label: 'Telegram Bot · Knowledge base',
+        text: 'Отвечает по документам и базе знаний: FAQ, инструкции, регламенты, материалы компании.',
+        result: 'Снижает нагрузку на поддержку и помогает клиентам получать ответы быстрее.',
+        tags: ['aiogram', 'Gemini API', 'Vector search'],
+        actions: [
+            { href: 'https://github.com/Rage213/portfolio/tree/main/rag-ai-assistant', icon: 'fa-brands fa-github', label: 'Исходный код' },
+        ],
+    },
+    {
+        icon: 'fa-solid fa-robot',
+        category: 'CRM / АНАЛИТИКА',
+        title: 'Бот CRM-аналитики',
+        label: 'Telegram Bot · CRM',
+        text: 'Учет клиентов, продаж, рассылки и графики динамики прямо в Telegram.',
+        result: 'Владелец видит клиентов, продажи и активность без отдельной тяжелой CRM.',
+        tags: ['SQLite', 'matplotlib', 'aiogram'],
+        actions: [
+            { href: 'https://github.com/Rage213/portfolio/tree/main/crm-analytics-bot', icon: 'fa-brands fa-github', label: 'Исходный код' },
+        ],
+    },
+    {
+        icon: 'fa-solid fa-calendar-days',
+        category: 'АВТОМАТИЗАЦИЯ',
+        title: 'Бот автопостинга',
+        label: 'Telegram Bot · Scheduler',
+        text: 'Публикации по расписанию, очередь задач, медиагруппы и контроль статусов отправки.',
+        result: 'Канал можно вести регулярно без ручного выхода в Telegram каждый раз.',
+        tags: ['APScheduler', 'SQLAlchemy', 'aiogram'],
+        actions: [
+            { href: 'https://github.com/Rage213/portfolio/tree/main/auto-posting-bot', icon: 'fa-brands fa-github', label: 'Исходный код' },
+        ],
+    },
+    {
+        icon: 'fa-solid fa-user-shield',
+        category: 'БЕЗОПАСНОСТЬ',
+        title: 'Модератор чатов',
+        label: 'Telegram Bot · Security',
+        text: 'Капча для новых участников, антиспам, фильтры сообщений и автоматические предупреждения.',
+        result: 'Чат остается чище, а администратор тратит меньше времени на ручную модерацию.',
+        tags: ['regex filters', 'aiosqlite', 'FSM'],
+        actions: [
+            { href: 'https://github.com/Rage213/portfolio/tree/main/chat-moderation-bot', icon: 'fa-brands fa-github', label: 'Исходный код' },
+        ],
+    },
+];
+
+function ProjectAction({ action }) {
+    if (!action.href) {
+        return (
+            <span className="project-action project-action-muted">
+                <i className={action.icon}></i> {action.label}
+            </span>
+        );
+    }
+
+    return (
+        <a
+            href={action.href}
+            target="_blank"
+            rel="noreferrer"
+            className={`project-action ${action.primary ? 'project-action-primary' : ''}`}
+        >
+            <i className={action.icon}></i> {action.label}
+        </a>
+    );
+}
 
 export default function Portfolio() {
     return (
@@ -5,503 +139,56 @@ export default function Portfolio() {
             <div className="container">
                 <div className="section-header fade-in-up">
                     <span className="sub-title">Production samples</span>
-                    <h2>Реализованные кейсы</h2>
-                    <p>Telegram-боты и инструменты автоматизации, разработанные для решения реальных бизнес-задач.</p>
+                    <h2>Кейсы, которые можно адаптировать</h2>
+                    <p>Не просто учебные примеры: каждый проект показывает готовую бизнес-логику, которую можно быстро переделать под клиента.</p>
                 </div>
+
                 <div className="portfolio-grid">
-                    {/* Project 0: AI Outreach Userbot */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.05s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-solid fa-bolt" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Telegram Userbot · Gemini 2.5</span>
+                    {projects.map((project, index) => (
+                        <article className="project-card fade-in-up" style={{ transitionDelay: `${0.05 + index * 0.04}s` }} key={project.title}>
+                            <div className="project-image">
+                                <div className="project-mockup">
+                                    <i className={project.icon}></i>
+                                    <span>{project.label}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">АВТОМАТИЗАЦИЯ / ИИ</span>
-                            <h3>ИИ-Ассистент поиска клиентов (Userbot)</h3>
-                            <p>Умный юзербот для мониторинга фриланс-чатов в реальном времени, автоматической фильтрации лидов по ключевым словам и мгновенного ведения ИИ-диалога с клиентами в ЛС от вашего лица.</p>
-                            <div className="project-tags">
-                                <span>Telethon</span>
-                                <span>Gemini 2.5 Flash</span>
-                                <span>asyncio</span>
+                            <div className="project-info">
+                                <span className="project-category">{project.category}</span>
+                                <h3>{project.title}</h3>
+                                <p>{project.text}</p>
+                                <div className="project-result">
+                                    <i className="fa-solid fa-arrow-trend-up"></i>
+                                    <span>{project.result}</span>
+                                </div>
+                                <div className="project-tags">
+                                    {project.tags.map(tag => (
+                                        <span key={tag}>{tag}</span>
+                                    ))}
+                                </div>
+                                <div className="project-links">
+                                    {project.actions.map(action => (
+                                        <ProjectAction action={action} key={action.label} />
+                                    ))}
+                                </div>
                             </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://t.me/knrcharge"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-primary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        textDecoration: 'none',
-                                        color: '#fff',
-                                        background: 'var(--accent-blue)',
-                                        borderRadius: '4px',
-                                        fontWeight: '500',
-                                        transition: 'opacity 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-solid fa-comment-dots"></i> Купить / Заказать
-                                </a>
-                                <span
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        color: 'var(--text-secondary)',
-                                        borderRadius: '4px'
-                                    }}
-                                >
-                                    <i className="fa-solid fa-lock" style={{ fontSize: '0.75rem' }}></i> Код приватный
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Project 1 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.1s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-brands fa-telegram" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Telegram Bot · aiogram 3.x</span>
-                            </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">МАГАЗИНЫ</span>
-                            <h3>Бот-магазин в Telegram</h3>
-                            <p>Полноценный интернет-магазин внутри Telegram: корзина, каталог товаров, асинхронная БД SQLite и встроенные платежи.</p>
-                            <div className="project-tags">
-                                <span>aiogram 3.x</span>
-                                <span>aiosqlite</span>
-                                <span>FSM Context</span>
-                            </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://t.me/nexusllabsbot"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-primary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        textDecoration: 'none',
-                                        color: '#fff',
-                                        background: 'var(--accent-blue)',
-                                        borderRadius: '4px',
-                                        fontWeight: '500',
-                                        transition: 'opacity 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-solid fa-play"></i> Запустить демо
-                                </a>
-                                <a
-                                    href="https://github.com/Rage213/portfolio/tree/main/tg-shop-bot"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-secondary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        textDecoration: 'none',
-                                        color: 'var(--text-primary)',
-                                        borderRadius: '4px',
-                                        transition: 'background 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-brands fa-github"></i> Исходный код
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Project 2 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.15s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-solid fa-credit-card" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Telegram Bot · Payments</span>
-                            </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">ПЛАТЕЖИ</span>
-                            <h3>Crypto Payment Bot</h3>
-                            <p>Магазин цифровых товаров в Telegram с автоматическим приёмом платежей в криптовалюте через CryptoBot API и моментальной выдачей.</p>
-                            <div className="project-tags">
-                                <span>aiogram 3.x</span>
-                                <span>CryptoBot API</span>
-                                <span>aiohttp</span>
-                            </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://t.me/nexus_pay_demo_bot"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-primary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        textDecoration: 'none',
-                                        color: '#fff',
-                                        background: 'var(--accent-blue)',
-                                        borderRadius: '4px',
-                                        fontWeight: '500',
-                                        transition: 'opacity 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-solid fa-play"></i> Запустить демо
-                                </a>
-                                <a
-                                    href="https://github.com/Rage213/portfolio/tree/main/crypto-payment-bot"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-secondary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        textDecoration: 'none',
-                                        color: 'var(--text-primary)',
-                                        borderRadius: '4px',
-                                        transition: 'background 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-brands fa-github"></i> Исходный код
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Project 3 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.2s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-solid fa-chart-line" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Парсер · aiohttp + asyncio</span>
-                            </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">МОНИТОРИНГ</span>
-                            <h3>Асинхронный парсер цен</h3>
-                            <p>Высокопроизводительный скрапер для отслеживания цен конкурентов. Telegram-уведомления при изменении цены.</p>
-                            <div className="project-tags">
-                                <span>aiohttp</span>
-                                <span>asyncio</span>
-                                <span>Web Scraping</span>
-                            </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://github.com/Rage213/portfolio/tree/main/price-tracker-parser"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-secondary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        textDecoration: 'none',
-                                        color: 'var(--text-primary)',
-                                        borderRadius: '4px',
-                                        transition: 'background 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-brands fa-github"></i> Исходный код
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Project 4 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.25s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-solid fa-shield-halved" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Скрапер · Playwright</span>
-                            </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">СКРАПИНГ</span>
-                            <h3>Обход антибот-защиты</h3>
-                            <p>Продвинутый скрапер веб-ресурсов с обходом Cloudflare, CAPTCHA и полной имитацией поведения реального пользователя.</p>
-                            <div className="project-tags">
-                                <span>playwright</span>
-                                <span>aiohttp</span>
-                                <span>BeautifulSoup</span>
-                            </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://github.com/Rage213/portfolio/tree/main/anti-bot-scraper"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-secondary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        textDecoration: 'none',
-                                        color: 'var(--text-primary)',
-                                        borderRadius: '4px',
-                                        transition: 'background 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-brands fa-github"></i> Исходный код
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Project 5 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.3s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-solid fa-brain" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Telegram Bot · OpenAI RAG</span>
-                            </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">ИИ / ЧАТ-БОТЫ</span>
-                            <h3>AI-ассистент с RAG</h3>
-                            <p>Умный Telegram-бот с интеграцией OpenAI API, векторной базой знаний (Chroma/Pinecone) и контекстным поиском по документам.</p>
-                            <div className="project-tags">
-                                <span>aiogram</span>
-                                <span>OpenAI API</span>
-                                <span>Vector Store</span>
-                            </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://github.com/Rage213/portfolio/tree/main/rag-ai-assistant"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-secondary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        textDecoration: 'none',
-                                        color: 'var(--text-primary)',
-                                        borderRadius: '4px',
-                                        transition: 'background 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-brands fa-github"></i> Исходный код
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Project 6 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.35s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-solid fa-robot" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Telegram Bot · CRM + Analytics</span>
-                            </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">CRM / АНАЛИТИКА</span>
-                            <h3>Бот CRM-аналитики</h3>
-                            <p>Telegram-бот для управления продажами: учёт клиентов, отчёты по сделкам и графики динамики прямо в чате.</p>
-                            <div className="project-tags">
-                                <span>aiogram</span>
-                                <span>SQLite</span>
-                                <span>matplotlib</span>
-                            </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://github.com/Rage213/portfolio/tree/main/crm-analytics-bot"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-secondary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        textDecoration: 'none',
-                                        color: 'var(--text-primary)',
-                                        borderRadius: '4px',
-                                        transition: 'background 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-brands fa-github"></i> Исходный код
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Project 7 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.4s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-solid fa-calendar-days" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Telegram Bot · Scheduler</span>
-                            </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">АВТОМАТИЗАЦИЯ</span>
-                            <h3>Бот автопостинга</h3>
-                            <p>Планировщик публикаций в Telegram-каналы по расписанию. Поддержка медиагрупп, очередей задач и работы по расписанию.</p>
-                            <div className="project-tags">
-                                <span>aiogram 3.x</span>
-                                <span>APScheduler</span>
-                                <span>SQLAlchemy</span>
-                            </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://github.com/Rage213/portfolio/tree/main/auto-posting-bot"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-secondary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        textDecoration: 'none',
-                                        color: 'var(--text-primary)',
-                                        borderRadius: '4px',
-                                        transition: 'background 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-brands fa-github"></i> Исходный код
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Project 8 */}
-                    <div className="project-card fade-in-up" style={{ transitionDelay: '0.45s' }}>
-                        <div className="project-image">
-                            <div className="project-mockup">
-                                <i className="fa-solid fa-user-shield" style={{ color: 'var(--accent-blue)', fontSize: '2rem' }}></i>
-                                <span>Telegram Bot · Security</span>
-                            </div>
-                        </div>
-                        <div className="project-info">
-                            <span className="project-category">БЕЗОПАСНОСТЬ</span>
-                            <h3>Модератор чатов</h3>
-                            <p>Бот модерации чатов с капчей для новых участников, защитой от спама и фильтрацией сообщений по регулярным выражениям.</p>
-                            <div className="project-tags">
-                                <span>aiogram 3.x</span>
-                                <span>aiosqlite</span>
-                                <span>regex filters</span>
-                            </div>
-                            <div className="project-links" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
-                                <a
-                                    href="https://github.com/Rage213/portfolio/tree/main/chat-moderation-bot"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn btn-secondary"
-                                    style={{
-                                        fontSize: '0.8rem',
-                                        padding: '0.5rem 1rem',
-                                        flex: 1,
-                                        textAlign: 'center',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid var(--border-color)',
-                                        background: 'rgba(255, 255, 255, 0.02)',
-                                        textDecoration: 'none',
-                                        color: 'var(--text-primary)',
-                                        borderRadius: '4px',
-                                        transition: 'background 0.2s'
-                                    }}
-                                >
-                                    <i className="fa-brands fa-github"></i> Исходный код
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                        </article>
+                    ))}
                 </div>
-                {/* View All Projects CTA */}
-                <div className="fade-in-up" style={{ textAlign: 'center', marginTop: '3rem' }}>
+
+                <div className="portfolio-footer fade-in-up">
                     <a
                         href="https://github.com/Rage213/portfolio"
                         target="_blank"
                         rel="noreferrer"
                         className="btn btn-primary"
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', fontSize: '1rem', padding: '0.85rem 2rem' }}
                     >
                         <i className="fa-brands fa-github"></i>
                         Все проекты на GitHub
-                        <i className="fa-solid fa-arrow-right" style={{ fontSize: '0.85rem' }}></i>
+                        <i className="fa-solid fa-arrow-right"></i>
                     </a>
-                    <p style={{ marginTop: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                    <p>
                         11 проектов с исходным кодом ·{' '}
-                        <a
-                            href="https://github.com/Rage213/portfolio"
-                            target="_blank"
-                            rel="noreferrer"
-                            style={{ color: 'var(--accent-blue)', textDecoration: 'none' }}
-                        >
+                        <a href="https://github.com/Rage213/portfolio" target="_blank" rel="noreferrer">
                             github.com/Rage213/portfolio
                         </a>
                     </p>

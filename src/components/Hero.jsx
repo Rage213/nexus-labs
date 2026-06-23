@@ -10,12 +10,12 @@ export default function Hero() {
                         <span>Telegram commerce</span>
                     </div>
                     <h1 className="fade-in-up">
-                        Автоматизация,<br />
-                        которая работает<br />
-                        <span className="text-gradient">после оплаты</span>
+                        Telegram-боты<br />
+                        для бизнеса<br />
+                        <span className="text-gradient">и автоматизация</span>
                     </h1>
                     <p className="hero-subtitle fade-in-up" style={{ transitionDelay: '0.1s' }}>
-                        Собираем Telegram-магазины, парсеры, платежные сценарии и служебные боты в один управляемый контур: заявки, оплаты, выдача и отчеты без ручной рутины.
+                        Собираем Telegram-магазины, парсеры, AI-ассистентов и CRM-ботов: от заявки и оплаты до уведомлений, отчетов и деплоя на VPS.
                     </p>
                     <div className="hero-cta fade-in-up" style={{ transitionDelay: '0.2s' }}>
                         <a href="#contact" className="btn btn-primary">
@@ -27,16 +27,16 @@ export default function Hero() {
                     </div>
                     <div className="hero-stats fade-in-up" style={{ transitionDelay: '0.3s' }}>
                         <div className="stat-item">
-                            <h3>aiogram 3</h3>
-                            <p>Боты, магазины, FSM</p>
+                            <h3>от $150</h3>
+                            <p>Бот для заявок и меню</p>
                         </div>
                         <div className="stat-item">
-                            <h3>24/7</h3>
-                            <p>Мониторинг и автовыдача</p>
+                            <h3>3-7 дней</h3>
+                            <p>MVP без лишней рутины</p>
                         </div>
                         <div className="stat-item">
-                            <h3>Deploy</h3>
-                            <p>Render, VPS, Docker</p>
+                            <h3>VPS</h3>
+                            <p>Запуск и поддержка 24/7</p>
                         </div>
                     </div>
                 </div>
