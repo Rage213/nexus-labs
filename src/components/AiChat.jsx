@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 const QA_DATABASE = [
     {
         keys: ['цена', 'стоимость', 'прайс', 'сколько', 'дорого', 'дешево', 'руб', 'доллар', 'бакс'],
-        answer: 'Цены начинаются от **15 000 ₽ / $200** за Telegram-бота для заявок, от **25 000 ₽ / $335** за парсер и от **35 000 ₽ / $470** за Telegram-магазин. Точная сумма зависит от функций, интеграций и сроков.'
+        answer: 'Минимальные цены для первых заказов: от **1 500 ₽ / $20** за Telegram-бота для заявок, от **2 000 ₽ / $25** за простой парсер и от **3 000 ₽ / $40** за Telegram-магазин. AI-бот по базе знаний — от **5 000 ₽ / $70**. Это цена за базовую версию; функции, интеграции и срочность увеличивают бюджет.'
     },
     {
         keys: ['срок', 'время', 'быстро', 'когда', 'дней', 'день', 'неделя'],
@@ -151,30 +151,30 @@ export default function AiChat() {
 
     // Calculate budget estimation based on tzData
     const calculateEstimate = (updatedTz) => {
-        let baseMin = 25000;
-        let baseMax = 45000;
+        let baseMin = 2000;
+        let baseMax = 7000;
 
         if (updatedTz.type === 'Telegram-бот') {
-            baseMin = 15000;
-            baseMax = 30000;
+            baseMin = 1500;
+            baseMax = 6000;
             if (updatedTz.subType && updatedTz.subType.includes('Магазин')) {
-                baseMin = 35000;
-                baseMax = 65000;
+                baseMin = 3000;
+                baseMax = 12000;
             }
             if (updatedTz.subType && updatedTz.subType.includes('техподдержки')) {
-                baseMin = 25000;
-                baseMax = 50000;
+                baseMin = 2500;
+                baseMax = 10000;
             }
         }
 
         updatedTz.features.forEach(() => {
-            baseMin += 5000;
-            baseMax += 10000;
+            baseMin += 1000;
+            baseMax += 3000;
         });
 
         if (updatedTz.deadline && updatedTz.deadline.includes('Срочно')) {
-            baseMin += 7000;
-            baseMax += 15000;
+            baseMin += 1500;
+            baseMax += 5000;
         }
 
         return { min: baseMin, max: baseMax };
@@ -268,7 +268,7 @@ export default function AiChat() {
                 speak('Давайте соберем ТЗ для вашего **парсер/скрипта**. Какая основная задача софта?');
             } else if (chip.action === 'view-prices') {
                 speak(
-                    'Наши цены:\n- Telegram-бот для заявок: от **15 000 ₽ / $200**\n- Парсер или мониторинг цен: от **25 000 ₽ / $335**\n- Telegram-магазин: от **35 000 ₽ / $470**\n- AI-бот по базе знаний: от **60 000 ₽ / $800**\n\nТочная цена зависит от функций, интеграций, базы данных, платежей и сроков.'
+                    'Минимальные цены для первых заказов:\n- Telegram-бот для заявок: от **1 500 ₽ / $20**\n- Простой парсер или мониторинг: от **2 000 ₽ / $25**\n- Telegram-магазин: от **3 000 ₽ / $40**\n- AI-бот по базе знаний: от **5 000 ₽ / $70**\n\nЭто старт за базовую версию. Цена растет, если нужны база данных, платежи, админка, интеграции, деплой или срочный срок.'
                 );
             } else if (chip.action === 'ask-question') {
                 speak('Спрашивайте! Напишите свой вопрос в чат, и я сразу на него отвечу. Либо нажмите на одну из кнопок заказа выше.');
